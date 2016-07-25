@@ -1,8 +1,7 @@
 import Home from '../pages/home';
-import Second from '../pages/second';
 import Login from '../pages/login';
 import NotFound from '../pages/not-found';
-import DashboardLayout from '../pages/dashborad-layout';
+import Layout from '../pages/layout';
 
 import UsersList from '../pages/users/list';
 import UsersEdit from '../pages/users/edit';
@@ -22,7 +21,7 @@ const routes = {
   },
 
   '/': {
-    component: DashboardLayout,
+    component: Layout,
     subRoutes: {
       '/': {
         component: Home,
@@ -42,19 +41,19 @@ const routes = {
       },
 
       '/groups': {
-        component: Second,
+        component: Home,
       },
 
       '/customers': {
-        component: Second,
+        component: Home,
       },
 
       '/vehicles': {
-        component: Second,
+        component: Home,
       },
 
       '/equipments': {
-        component: Second,
+        component: Home,
       },
     },
   },

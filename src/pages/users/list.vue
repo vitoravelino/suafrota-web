@@ -1,11 +1,21 @@
 <template>
-  <h3>Usuários</h3>
-  <data-table :collection="users" :fields="fields" :can-edit="true"></data-table>
+  <content-header title="Usuários" subtitle="Listar todos">
+    <div slot="button-bar">
+      <a class="btn btn-primary" v-link="{path: '/users/new'}">
+        <span class="fa fa-plus"></span>
+        &nbsp; Criar usuário
+      </a>
+    </div>
+  </content-header>
+
+  <content-main>
+    <data-table :collection="users" :fields="fields" :can-edit="true"></data-table>
+  </content-main>
 </template>
 
 <script>
-  import Multiselect from 'vue-multiselect';
-
+  import ContentHeader from '../../components/common/content/header';
+  import ContentMain from '../../components/common/content/main';
   import DataTable from '../../components/common/data-table';
 
   import UsersService from '../../services/users';
@@ -34,7 +44,8 @@
 
     components: {
       DataTable,
-      Multiselect,
+      ContentHeader,
+      ContentMain,
     },
   };
 </script>

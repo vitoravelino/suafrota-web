@@ -14,13 +14,12 @@
 
 <template>
   <div class="box">
-    <div class="box-header">
-      <h3 class="box-title">Responsive Hover Table</h3>
+    <div class="box-header" v-if="title">
+      <h3 class="box-title">{{ title }}</h3>
     </div>
     <!-- /.box-header -->
 
     <div class="box-body">
-      {{ table | json }}
       <data-table-filters :limit-by.sync="table.limitBy" :filter-by.sync="table.filterBy" :filter-columns.sync="table.filterColumns" :fields="fields"></data-table-filters>
 
       <div class="table-responsive">
@@ -51,7 +50,7 @@
         </table>
       </div> <!-- /.table-responsive -->
 
-      <data-table-pagination :total.sync="table.filteredTotal" :page.sync="table.page" :itens-per-page.sync="table.limitBy"></data-table-pagination>
+      <data-table-pagination :total.sync="table.filteredTotal" :current-page.sync="table.currentPage" :itens-per-page.sync="table.limitBy"></data-table-pagination>
     </div>
   </div> <!-- /.box-body -->
 </template>
@@ -62,6 +61,7 @@
 
   export default {
     props: {
+      title: String,
       collection: Array,
       fields: Object,
       canEdit: {
@@ -78,7 +78,7 @@
           limitOffset: 0,
           filterBy: '',
           filterColumns: Object.keys(this.fields),
-          page: 1,
+          currentPage: 1,
         },
       };
     },
@@ -95,7 +95,7 @@
       sort(key) {
         this.$set('table.orderBy', key);
         this.$set('table.order', this.table.order === 0 ? -1 : 0);
-        this.$set('table.page', 1);
+        this.$set('table.currentPage', 1);
       },
     },
 

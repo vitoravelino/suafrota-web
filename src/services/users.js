@@ -19,12 +19,21 @@ function get(id) {
 }
 
 /**
+ * [save description]
+ * @param  {[type]} user [description]
+ * @return {[type]}      [description]
+ */
+function save(user) {
+  return resource.save({}, user);
+}
+
+/**
  * [update description]
  * @param  {[type]} user [description]
  * @return {[type]}      [description]
  */
 function update(user) {
-  return resource.update({ id: user.id }, { data: user });
+  return resource.update({ id: user.id }, user);
 }
 
 /**
@@ -46,6 +55,7 @@ function all(params = {}) {
 
 export default {
   get,
+  save,
   all,
   update,
   delete: remove,

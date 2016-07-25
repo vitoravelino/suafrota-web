@@ -1,10 +1,23 @@
 <style lang="sass">
   .multiselect
-    min-height: 39px
+    min-height: 34px !important
 
   .multiselect__tags
+    border-color: #d2d6de !important
     border-radius: 0 !important
-    min-height: 39px !important
+    min-height: 35px !important
+    padding-top: 5px !important
+
+  .multiselect__tag
+    margin-bottom: 3px !important
+
+  .multiselect__select
+    height: 34px !important
+
+  .multiselect__input,
+  .multiselect__single
+    margin-bottom: 5px  !important
+
 </style>
 
 <style lang="sass" scoped>
@@ -20,7 +33,7 @@
       <label>
         Show
         <select class="form-control" v-model="limitBy">
-          <option value="1">1</option>
+          <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>
           <option value="100">100</option>
@@ -36,7 +49,7 @@
       em
       <label>
         <multiselect
-          placeholder="a"
+          placeholder="coluna1, coluna2, etc"
           key="name"
           label="name"
           :options="options"

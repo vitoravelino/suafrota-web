@@ -10,7 +10,7 @@
 <script>
   import { mapGetters } from 'vuex';
 
-  import ContentWrapper from '../components/common/content-wrapper';
+  import ContentWrapper from '../components/common/content/wrapper';
   import MainFooter from '../components/common/footer';
   import MainHeader from '../components/common/header';
   import Sidebar from '../components/common/sidebar';
