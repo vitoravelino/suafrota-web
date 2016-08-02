@@ -23,7 +23,7 @@
             &nbsp; Remover equipamento
           </button>
         </div>
-        {{ equipment | json }}
+
         <div class="box-body">
           <div class="form-group" :class="{'has-error': isModelInvalid}">
             <label for="model">Modelo</label>
