@@ -15,11 +15,15 @@ function signOut() {
 }
 
 function getToken() {
-  return store.getters.getToken;
+  return window.localStorage.getItem('sth.xpto');
+}
+
+function setToken(token) {
+  return window.localStorage.setItem('sth.xpto', token);
 }
 
 function destroy() {
-  store.dispatch('signOut');
+  window.localStorage.removeItem('sth.xpto');
 }
 
 function setUser(user) {
@@ -31,10 +35,11 @@ function setUser(user) {
  * @return {Boolean} [description]
  */
 function isLogged() {
-  return false;
+  return store.getters.currentUser !== null;
 }
 
 export default {
+  setToken,
   getToken,
   destroy,
   setUser,

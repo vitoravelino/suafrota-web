@@ -7,7 +7,19 @@ const API_URL = process.env.API_URL;
 
 const ENDPOINT = `${API_URL}users`;
 
-const resource = Vue.resource(`${ENDPOINT}{/id}`);
+const customActions = {
+  profile: { method: 'GET', url: `${ENDPOINT}/me` },
+};
+
+const resource = Vue.resource(`${ENDPOINT}{/id}`, {}, customActions);
+
+/**
+ * [getProfile description]
+ * @return {[type]} [description]
+ */
+function getProfile() {
+  return resource.profile();
+}
 
 /**
  * [get description]
@@ -54,6 +66,7 @@ function all(params = {}) {
 }
 
 export default {
+  getProfile,
   get,
   save,
   all,

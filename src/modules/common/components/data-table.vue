@@ -46,7 +46,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in collection | orderBy orderBy order | filterBy filterBy in filterColumns | count | limitBy limit offset">
+            <tr v-for="item in collection | orderBy orderBy order | customFilterBy | count | limitBy limit offset">
               <td v-for="(key, val) in fields">{{ itemValue(item, key) }}</td>
               <td>
                 <a class="action" title="Visualizar" role="button" @click="$emit('show', item.id)"><i class="fa fa-fw fa-file-text-o"></i></a>
@@ -66,6 +66,7 @@
 <script>
   import DataTableFilters from './data-table/filters';
   import DataTablePagination from './data-table/pagination';
+  import { deepFind } from '../../../utils/object';
 
   export default {
     props: {
@@ -101,6 +102,33 @@
 
         return collection;
       },
+
+      customFilterBy(collection) {
+        if (!this.filterBy.length) {
+          return collection;
+        }
+
+        const output = [];
+        const term = this.filterBy.toLowerCase();
+
+        let item;
+        let value;
+
+        for (let i = 0; i < collection.length; i++) {
+          item = collection[i];
+
+          for (let j = 0; j < this.filterColumns.length; j++) {
+            value = deepFind(item, this.filterColumns[j]);
+
+            if (value && value.toLowerCase().indexOf(term) !== -1) {
+              output.push(item);
+              break;
+            }
+          }
+        }
+
+        return output;
+      },
     },
 
     methods: {
@@ -111,13 +139,7 @@
       },
 
       itemValue(item, key) {
-        let current = item;
-
-        key.split('.').forEach((k) => {
-          current = current[k];
-        });
-
-        return current;
+        return deepFind(item, key);
       },
     },
 

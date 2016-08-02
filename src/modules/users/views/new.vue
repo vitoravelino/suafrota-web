@@ -26,8 +26,8 @@
 
     methods: {
       onSubmit() {
-        UsersService.save(this.user).then((data) => {
-          const user = data.json();
+        UsersService.save(this.user).then((response) => {
+          const user = response.json().user;
 
           this.$store.dispatch('setAlert', {
             message: 'Usuário criado com sucesso!',

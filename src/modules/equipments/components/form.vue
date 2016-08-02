@@ -23,7 +23,7 @@
             &nbsp; Remover equipamento
           </button>
         </div>
-
+        {{ equipment | json }}
         <div class="box-body">
           <div class="form-group" :class="{'has-error': isModelInvalid}">
             <label for="model">Modelo</label>
@@ -38,12 +38,20 @@
           <div class="form-group">
             <label>Veículo</label>
             <multiselect
-              placeholder="Modelo / ABC-1234"
-              key="name"
-              label="name"
-              :options="[]"
-              :selected="equipment.vehicle_id">
+              :options="vehicles"
+              :selected="equipment.vehicle"
+              :loading="isVehicleSearchLoading"
+              :custom-label="vehicleLabel"
+              @search-change="onSearchVehicle"
+              @update="onVehicleUpdate"
+              id="ajax"
+              key="id"
+              placeholder="Digite a placa do carro">
             </multiselect>
+          </div>
+          <div class="form-group">
+            <label for="installed_at">Instalado em</label>
+            <input type="text" name="installed_at" id="installed_at" class="form-control" placeholder="Digite a data" v-model="equipment.installed_at">
           </div>
       </form>
     </validator>
@@ -53,12 +61,16 @@
 <script>
   import Multiselect from 'vue-multiselect';
 
+  import VehiclesService from '../../vehicles/service';
+
   export default {
     props: ['equipment', 'edit'],
 
     data() {
       return {
         isSubmitted: false,
+        isVehicleSearchLoading: false,
+        vehicles: [],
       };
     },
 
@@ -68,6 +80,7 @@
               (this.$validation.serial.dirty ||
                this.isSubmitted);
       },
+
       isModelInvalid() {
         return this.$validation.model.required &&
               (this.$validation.model.dirty ||
@@ -83,6 +96,29 @@
         if (this.$validation.valid) {
           this.$emit('submit');
         }
+      },
+
+      onSearchVehicle(query) {
+        this.isVehicleSearchLoading = true;
+
+        VehiclesService.search({ license_plate: query }).then((response) => {
+          const vehicles = response.json().data;
+
+          this.vehicles = vehicles;
+          this.isVehicleSearchLoading = false;
+        });
+      },
+
+      onVehicleUpdate(vehicle) {
+        if (vehicle) {
+          this.$set('equipment.vehicle_id', vehicle.id);
+        } else {
+          this.$set('equipment.vehicle_id', null);
+        }
+      },
+
+      vehicleLabel(vehicle) {
+        return `${vehicle.license_plate} (${vehicle.model})`;
       },
 
       emitBack() {

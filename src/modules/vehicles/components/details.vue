@@ -38,7 +38,7 @@
 
       <strong>Equipamento</strong>
       <p class="text-muted">
-        {{ vehicle.equipment.serial }}
+        <a v-link="{ name: 'equipmentShow', params: { id: equipment.id }}" v-for="equipment in vehicle.equipments">{{ equipment.serial }}</a>
       </p>
     </div>
   </div>
@@ -47,5 +47,11 @@
 <script>
   export default {
     props: ['vehicle'],
+
+    computed: {
+      equipments() {
+        return this.vehicle.equipments.split(',');
+      },
+    },
   };
 </script>

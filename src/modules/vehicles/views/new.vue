@@ -26,8 +26,8 @@
 
     methods: {
       onSubmit() {
-        VehiclesService.save(this.vehicle).then((data) => {
-          const vehicle = data.json();
+        VehiclesService.save(this.vehicle).then((response) => {
+          const vehicle = response.json().data;
 
           this.$store.dispatch('setAlert', {
             message: 'Veículo criado com sucesso!',

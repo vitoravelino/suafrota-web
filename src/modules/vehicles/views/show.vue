@@ -17,15 +17,15 @@
     data() {
       return {
         vehicle: {
-          equipment: {},
+          equipments: [],
         },
       };
     },
 
     route: {
       activate({ to, next }) {
-        VehiclesService.get(to.params.id).then((data) => {
-          this.vehicle = data.json();
+        VehiclesService.get(to.params.id).then((response) => {
+          this.vehicle = response.json().data;
           next();
         });
       },

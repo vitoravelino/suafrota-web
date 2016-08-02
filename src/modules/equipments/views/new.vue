@@ -26,8 +26,8 @@
 
     methods: {
       onSubmit() {
-        EquipmentsService.save(this.equipment).then((data) => {
-          const equipment = data.json();
+        EquipmentsService.save(this.equipment).then((response) => {
+          const equipment = response.json().data;
 
           this.$store.dispatch('setAlert', {
             message: 'Equipamento criado com sucesso!',

@@ -7,7 +7,11 @@ const API_URL = process.env.API_URL;
 
 const ENDPOINT = `${API_URL}vehicles`;
 
-const resource = Vue.resource(`${ENDPOINT}{/id}`);
+const customActions = {
+  search: { method: 'GET', url: `${ENDPOINT}/search` },
+};
+
+const resource = Vue.resource(`${ENDPOINT}{/id}`, {}, customActions);
 
 /**
  * [get description]
@@ -46,6 +50,15 @@ function remove(id) {
 }
 
 /**
+ * [search description]
+ * @param  {[type]} params [description]
+ * @return {[type]}        [description]
+ */
+function search(params = {}) {
+  return resource.search(params);
+}
+
+/**
  * [all description]
  * @return {[type]} [description]
  */
@@ -59,4 +72,5 @@ export default {
   all,
   update,
   remove,
+  search,
 };

@@ -16,15 +16,22 @@ export default (http) => {
   http.interceptors.push((request, next) => {
     next((data) => {
       const json = data.json();
-      // 400 token not provided
-      // 401 token expired
 
-      if (data.status === 401 &&
-          json.error === 'token_expired') {
-        SessionsService.destroy();
+      if (data.headers.Authorization) {
+        const token = data.headers.Authorization.split('Bearer ')[1];
+
+        // no idea why using this new token is not working
+        SessionsService.setToken(token);
       }
 
-      console.log(data);
+      // 400 token not provided
+      // 401 token expired
+      if (data.status === 401 &&
+          (json.message === 'Token has expired' ||
+           json.message === 'Token Signature could not be verified.')) {
+        // redirect to /users/sign_in
+        SessionsService.destroy();
+      }
     });
   });
 };

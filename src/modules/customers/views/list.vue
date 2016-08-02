@@ -33,8 +33,8 @@
 
     route: {
       activate({ next }) {
-        CustomersService.all().then((data) => {
-          this.customers = data.json();
+        CustomersService.all().then((response) => {
+          this.customers = response.json().data;
           next();
         });
       },

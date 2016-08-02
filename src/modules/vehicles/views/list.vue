@@ -29,15 +29,15 @@
           model: 'Modelo',
           license_plate: 'Placa',
           type: 'Tipo',
-          'equipment.serial': 'Equipamento',
+          equipments: 'Equipamento',
         },
       };
     },
 
     route: {
       activate({ next }) {
-        VehiclesService.all().then((data) => {
-          this.vehicles = data.json();
+        VehiclesService.all().then((response) => {
+          this.vehicles = response.json().data;
           next();
         });
       },

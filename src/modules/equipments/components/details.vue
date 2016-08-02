@@ -45,7 +45,7 @@
       vehicle() {
         let output;
 
-        if (this.equipment.vehicle) {
+        if (this.equipment.vehicle_id) {
           output = `${this.equipment.vehicle.model} / ${this.equipment.vehicle.license_plate}`;
         } else {
           output = 'Nenhum';

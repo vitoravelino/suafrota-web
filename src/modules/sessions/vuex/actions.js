@@ -9,8 +9,7 @@ export default {
     return SessionsService.signIn(credentials).then((data) => {
       const token = data.json().authenticated.token;
 
-      window.localStorage.setItem('sth.xpto', token);
-      commit('SET_TOKEN', token);
+      SessionsService.setToken(token);
     }).catch(() => {
       console.log('catch signIn');
     });
@@ -18,8 +17,8 @@ export default {
 
   signOut({ commit }) {
     SessionsService.signOut().then(() => {
-      window.localStorage.removeItem('sth.xpto');
-      commit('REMOVE_TOKEN');
+      SessionsService.destroy();
+
       commit('REMOVE_USER');
     }).catch(() => {
       console.log('catch signOut');

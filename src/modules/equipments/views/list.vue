@@ -28,7 +28,7 @@
           id: 'ID',
           model: 'Modelo',
           serial: 'Serial',
-          vehicle_id: 'Veículo',
+          'vehicle.name': 'Veículo',
           installed_at: 'Instalação em',
         },
       };
@@ -36,8 +36,8 @@
 
     route: {
       activate({ next }) {
-        EquipmentsService.all().then((data) => {
-          this.equipments = data.json();
+        EquipmentsService.all().then((response) => {
+          this.equipments = response.json().data;
           next();
         });
       },

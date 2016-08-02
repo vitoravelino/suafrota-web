@@ -35,8 +35,8 @@
 
     route: {
       activate({ next }) {
-        UsersService.all().then((data) => {
-          this.users = JSON.parse(data.body);
+        UsersService.all().then((response) => {
+          this.users = response.json().data;
           next();
         });
       },

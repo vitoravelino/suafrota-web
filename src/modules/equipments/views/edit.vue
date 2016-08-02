@@ -26,8 +26,8 @@
 
     route: {
       activate({ to, next }) {
-        EquipmentsService.get(to.params.id).then((data) => {
-          this.equipment = data.json();
+        EquipmentsService.get(to.params.id).then((response) => {
+          this.equipment = response.json().data;
           next();
         });
       },
@@ -35,8 +35,8 @@
 
     methods: {
       onSubmit() {
-        EquipmentsService.update(this.equipment).then((data) => {
-          const equipment = data.json();
+        EquipmentsService.update(this.equipment).then((response) => {
+          const equipment = response.json().data;
 
           this.$store.dispatch('setAlert', {
             message: 'Equipamento atualizado com sucesso!',

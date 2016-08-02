@@ -16,14 +16,16 @@
   export default {
     data() {
       return {
-        equipment: {},
+        equipment: {
+          vehicle: {},
+        },
       };
     },
 
     route: {
       activate({ to, next }) {
-        EquipmentsService.get(to.params.id).then((data) => {
-          this.equipment = data.json();
+        EquipmentsService.get(to.params.id).then((response) => {
+          this.equipment = response.json().data;
           next();
         });
       },

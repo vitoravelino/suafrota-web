@@ -5,7 +5,7 @@
       <!-- The user image in the navbar-->
       <img src="http://lorempixel.com/160/160/people/" class="user-image" alt="User Image">
       <!-- hidden-xs hides the username on small devices so only the image appears. -->
-      <span class="hidden-xs">Alexander Pierce</span>
+      <span class="hidden-xs">{{ currentUser.name }} {{ currentUser.surname }}</span>
     </a>
 
     <ul class="dropdown-menu">
@@ -14,7 +14,7 @@
         <img src="http://lorempixel.com/160/160/people/" class="img-circle" alt="User Image">
 
         <p>
-          Alexander Pierce - Web Developer
+          {{ currentUser.name }} {{ currentUser.surname }} - Web Developer
           <small>Member since Nov. 2012</small>
         </p>
       </li>
@@ -49,12 +49,16 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     data() {
       return {
         open: false,
       };
     },
+
+    computed: mapGetters(['currentUser']),
 
     methods: {
       toggleDropdown() {

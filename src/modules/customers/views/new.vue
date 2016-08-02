@@ -26,8 +26,8 @@
 
     methods: {
       onSubmit() {
-        CustomersService.save(this.customer).then((data) => {
-          const customer = data.json();
+        CustomersService.save(this.customer).then((response) => {
+          const customer = response.json().data;
 
           this.$store.dispatch('setAlert', {
             message: 'Cliente criado com sucesso!',

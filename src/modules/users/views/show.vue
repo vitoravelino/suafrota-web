@@ -22,8 +22,8 @@
 
     route: {
       activate({ to, next }) {
-        UsersService.get(to.params.id).then((data) => {
-          this.user = data.json();
+        UsersService.get(to.params.id).then((response) => {
+          this.user = response.json().data;
           next();
         });
       },

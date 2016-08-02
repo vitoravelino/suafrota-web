@@ -26,8 +26,8 @@
 
     route: {
       activate({ to, next }) {
-        UsersService.get(to.params.id).then((data) => {
-          this.user = data.json();
+        UsersService.get(to.params.id).then((response) => {
+          this.user = response.json().data;
           next();
         });
       },
@@ -35,8 +35,8 @@
 
     methods: {
       onSubmit() {
-        UsersService.update(this.user).then((data) => {
-          const user = data.json();
+        UsersService.update(this.user).then((response) => {
+          const user = response.json().user;
 
           this.$store.dispatch('setAlert', {
             message: 'Usuário atualizado com sucesso!',

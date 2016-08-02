@@ -48,7 +48,7 @@
         </a>
       </li>
     </multilevel>
-    <multilevel name="Equipamentos" icon="fa-cog">
+    <multilevel name="Equipamentos" icon="fa-plug">
       <li :class="{'active': $route.path == '/equipments'}">
         <a v-link="{path: '/equipments'}">
           <i class="fa fa-circle-o"></i>

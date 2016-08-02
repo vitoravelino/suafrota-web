@@ -55,7 +55,7 @@
           :options="options"
           :selected="selected"
           :multiple="true"
-          :on-change="updateFilterColumns">
+          @update="updateFilterColumns">
         </multiselect>
       </label>
     </div>

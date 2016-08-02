@@ -26,8 +26,8 @@
 
     route: {
       activate({ to, next }) {
-        VehiclesService.get(to.params.id).then((data) => {
-          this.vehicle = data.json();
+        VehiclesService.get(to.params.id).then((response) => {
+          this.vehicle = response.json().data;
           next();
         });
       },
@@ -35,8 +35,8 @@
 
     methods: {
       onSubmit() {
-        VehiclesService.update(this.vehicle).then((data) => {
-          const vehicle = data.json();
+        VehiclesService.update(this.vehicle).then((response) => {
+          const vehicle = response.json().data;
 
           this.$store.dispatch('setAlert', {
             message: 'Veículo atualizado com sucesso!',

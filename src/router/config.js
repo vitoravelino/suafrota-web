@@ -21,13 +21,19 @@ export function configRoutes(router) {
     const isLogged = SessionsService.isLogged();
 
     // checking if token still valid if not logged
-    if (to.auth && token && !isLogged) {
+    if (token && !isLogged) {
       UsersService.getProfile().then((data) => {
-        const user = data.json();
+        const user = data.json().user;
 
         SessionsService.setUser(user);
-        next();
+
+        if (to.anon) {
+          redirect('/');
+        } else {
+          next();
+        }
       }).catch(() => {
+        console.log('opa');
         redirect('/users/sign_in');
       });
 
