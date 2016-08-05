@@ -20,25 +20,20 @@
           </button>
           <button type="button "class="btn btn-danger pull-right" @click.prevent="emitRemove" v-if="edit">
             <i class="fa fa-trash"></i>
-            &nbsp; Remover cliente
+            &nbsp; Remover grupo
           </button>
         </div>
 
         <div class="box-body">
           <div class="form-group" :class="{'has-error': isNameInvalid}">
-            <label for="name">Razão Social</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Digite a razão social" v-model="customer.name" v-validate:name="['required']">
+            <label for="name">Nome</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Digite o nome" v-model="permissionGroup.name" v-validate:name="['required']">
             <span class="help-block" v-show="isNameInvalid">Campo obrigatório</span>
           </div>
-          <div class="form-group" :class="{'has-error': isAddressInvalid}">
-            <label for="address">Endereço</label>
-            <input type="text" name="address" id="address" class="form-control" placeholder="Digite o endereço" v-model="customer.address" v-validate:address="['required']">
-            <span class="help-block" v-show="isAddressInvalid">Campo obrigatório</span>
-          </div>
-          <div class="form-group" :class="{'has-error': isCodeInvalid}">
-            <label for="address">Código</label>
-            <input type="text" name="address" id="address" class="form-control" placeholder="Digite o código" v-model="customer.address" v-validate:address="['customer_code']">
-            <span class="help-block" v-show="isCodeInvalid">Código inválido (e.g.: ABC, DEF, etc)</span>
+          <div class="form-group" :class="{'has-error': isPrefixInvalid}">
+            <label for="prefix">Prefixo</label>
+            <input type="text" name="prefix" id="prefix" class="form-control" placeholder="Digite o prefixo" v-model="permissionGroup.prefix" v-validate:prefix="['required']">
+            <span class="help-block" v-show="isPrefixInvalid">Campo obrigatório</span>
           </div>
         </div>
       </form>
@@ -47,10 +42,8 @@
 </template>
 
 <script>
-  import Multiselect from 'vue-multiselect';
-
   export default {
-    props: ['customer', 'edit'],
+    props: ['permissionGroup', 'edit'],
 
     data() {
       return {
@@ -65,16 +58,10 @@
                this.isSubmitted);
       },
 
-      isAddressInvalid() {
-        return this.$validation.address.required &&
-              (this.$validation.address.dirty ||
-               this.isSubmitted);
-      },
-
-      isCodeInvalid() {
-        return this.$validation.code.customer_code &&
-              (this.$validation.code.dirty ||
-               this.isSubmitted);
+      isPrefixInvalid() {
+        return this.$validation.prefix.invalid &&
+               (this.$validation.prefix.dirty ||
+                this.isSubmitted);
       },
     },
 
@@ -96,10 +83,6 @@
         // confirm()
         this.$emit('back');
       },
-    },
-
-    components: {
-      Multiselect,
     },
   };
 </script>

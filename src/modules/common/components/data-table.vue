@@ -49,9 +49,9 @@
             <tr v-for="item in collection | orderBy orderBy order | customFilterBy | count | limitBy limit offset">
               <td v-for="(key, val) in fields">{{ itemValue(item, key) }}</td>
               <td>
-                <a class="action" title="Visualizar" role="button" @click="$emit('show', item.id)"><i class="fa fa-fw fa-file-text-o"></i></a>
+                <a class="action" title="Visualizar" role="button" @click="$emit('show', item.id)" v-if="canShow"><i class="fa fa-fw fa-file-text-o"></i></a>
                 <a class="action" title="Editar" role="button" @click="$emit('edit', item.id)" v-if="canEdit"><i class="fa fa-fw fa-edit"></i></a>
-                <a class="action" title="Remover" role="button" v-if="canRemove"><i class="fa fa-fw fa-trash"></i></a>
+                <a class="action" title="Remover" role="button" @click="$emit('remove', item)" v-if="canRemove"><i class="fa fa-fw fa-trash"></i></a>
               </td>
             </tr>
           </tbody>
@@ -73,7 +73,13 @@
       title: String,
       collection: Array,
       fields: Object,
+      canShow: {
+        default: true,
+      },
       canEdit: {
+        default: false,
+      },
+      canRemove: {
         default: false,
       },
     },

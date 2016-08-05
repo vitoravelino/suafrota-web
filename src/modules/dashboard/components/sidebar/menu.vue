@@ -35,16 +35,28 @@
       </li>
     </multilevel>
     <multilevel name="Veículos" icon="fa-car">
+      <li :class="{'active': $route.path == '/vehicle_groups'}">
+        <a v-link="{path: '/vehicle_groups'}">
+          <i class="fa fa-circle-o"></i>
+          Listar grupos
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/vehicle_groups/new'}">
+        <a v-link="{path: '/vehicle_groups/new'}">
+          <i class="fa fa-circle-o"></i>
+          Criar grupo
+        </a>
+      </li>
       <li :class="{'active': $route.path == '/vehicles'}">
         <a v-link="{path: '/vehicles'}">
           <i class="fa fa-circle-o"></i>
-          Listar todos
+          Listar veículos
         </a>
       </li>
       <li :class="{'active': $route.path == '/vehicles/new'}">
         <a v-link="{path: '/vehicles/new'}">
           <i class="fa fa-circle-o"></i>
-          Criar novo
+          Criar veículo
         </a>
       </li>
     </multilevel>
@@ -73,6 +85,21 @@
         <a v-link="{path: '/customers/new'}">
           <i class="fa fa-circle-o"></i>
           Criar novo
+        </a>
+      </li>
+    </multilevel>
+
+    <multilevel name="Permissões" icon="fa-tasks">
+      <li :class="{'active': $route.path == '/permission_groups'}">
+        <a v-link="{path: '/permission_groups'}">
+          <i class="fa fa-circle-o"></i>
+          Listar grupos
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/permission_groups/new'}">
+        <a v-link="{path: '/permission_groups/new'}">
+          <i class="fa fa-circle-o"></i>
+          Criar grupo
         </a>
       </li>
     </multilevel>

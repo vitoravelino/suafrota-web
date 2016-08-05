@@ -43,6 +43,7 @@
             </select>
             <span class="help-block" v-show="isTypeInvalid">Campo obrigatório</span>
           </div>
+        </div>
       </form>
     </validator>
   </div>

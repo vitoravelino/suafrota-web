@@ -36,7 +36,7 @@
     methods: {
       onSubmit() {
         UsersService.update(this.user).then((response) => {
-          const user = response.json().user;
+          const user = response.json().data;
 
           this.$store.dispatch('setAlert', {
             message: 'Usuário atualizado com sucesso!',

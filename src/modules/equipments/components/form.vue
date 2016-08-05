@@ -53,6 +53,7 @@
             <label for="installed_at">Instalado em</label>
             <input type="text" name="installed_at" id="installed_at" class="form-control" placeholder="Digite a data" v-model="equipment.installed_at">
           </div>
+        </div>
       </form>
     </validator>
   </div>

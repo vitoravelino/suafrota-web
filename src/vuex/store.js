@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import dashboard from '../modules/dashboard/vuex/store';
 import customers from '../modules/customers/vuex/store';
 import sessions from '../modules/sessions/vuex/store';
+import permissions from '../modules/permissions/vuex/store';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     dashboard,
     customers,
     sessions,
+    permissions,
   },
   strict: debug,
 });

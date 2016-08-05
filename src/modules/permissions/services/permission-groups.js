@@ -5,22 +5,9 @@ Vue.use(VueResource);
 
 const API_URL = process.env.API_URL;
 
-const ENDPOINT = `${API_URL}users`;
+const ENDPOINT = `${API_URL}permission_groups`;
 
-const customActions = {
-  profile: { method: 'GET', url: `${ENDPOINT}/me` },
-  search: { method: 'GET', url: `${ENDPOINT}/search` },
-};
-
-const resource = Vue.resource(`${ENDPOINT}{/id}`, {}, customActions);
-
-/**
- * [getProfile description]
- * @return {[type]} [description]
- */
-function getProfile() {
-  return resource.profile();
-}
+const resource = Vue.resource(`${ENDPOINT}{/id}`);
 
 /**
  * [get description]
@@ -33,20 +20,20 @@ function get(id) {
 
 /**
  * [save description]
- * @param  {[type]} user [description]
+ * @param  {[type]} permissionGroup [description]
  * @return {[type]}      [description]
  */
-function save(user) {
-  return resource.save({}, user);
+function save(permissionGroup) {
+  return resource.save({}, permissionGroup);
 }
 
 /**
  * [update description]
- * @param  {[type]} user [description]
+ * @param  {[type]} permissionGroup [description]
  * @return {[type]}      [description]
  */
-function update(user) {
-  return resource.update({ id: user.id }, user);
+function update(permissionGroup) {
+  return resource.update({ id: permissionGroup.id }, permissionGroup);
 }
 
 /**
@@ -59,15 +46,6 @@ function remove(id) {
 }
 
 /**
- * [search description]
- * @param  {[type]} params [description]
- * @return {[type]}        [description]
- */
-function search(params = {}) {
-  return resource.search(params);
-}
-
-/**
  * [all description]
  * @return {[type]} [description]
  */
@@ -76,11 +54,9 @@ function all(params = {}) {
 }
 
 export default {
-  getProfile,
   get,
   save,
   all,
   update,
   remove,
-  search,
 };
