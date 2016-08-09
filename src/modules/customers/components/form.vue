@@ -36,8 +36,8 @@
             <span class="help-block" v-show="isAddressInvalid">Campo obrigatório</span>
           </div>
           <div class="form-group" :class="{'has-error': isCodeInvalid}">
-            <label for="address">Código</label>
-            <input type="text" name="address" id="address" class="form-control" placeholder="Digite o código" v-model="customer.address" v-validate:address="['customer_code']">
+            <label for="code">Código</label>
+            <input type="text" name="code" id="code" class="form-control" placeholder="Digite o código" v-model="customer.code" v-validate:code="['customer_code']">
             <span class="help-block" v-show="isCodeInvalid">Código inválido (e.g.: ABC, DEF, etc)</span>
           </div>
         </div>

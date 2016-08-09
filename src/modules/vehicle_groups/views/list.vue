@@ -27,6 +27,8 @@
         fields: {
           id: 'ID',
           name: 'Nome',
+          users: 'Qtd. usuários',
+          vehicles: 'Qtd. veículos',
         },
       };
     },

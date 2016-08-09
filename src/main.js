@@ -17,7 +17,7 @@ Vue.use(VueValidator);
 
 Vue.config.debug = process.env.DEBUG;
 
-const router = new VueRouter();
+export const router = new VueRouter();
 
 configRoutes(router);
 

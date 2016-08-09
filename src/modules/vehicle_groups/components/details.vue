@@ -19,6 +19,20 @@
       <p class="text-muted">
         {{ vehicleGroup.name }}
       </p>
+
+      <hr/>
+
+      <strong>Usuários ({{ vehicleGroup.users.length }})</strong>
+      <p class="text-muted">
+        {{ users }}
+      </p>
+
+      <hr />
+
+      <strong>Veículos ({{ vehicleGroup.vehicles.length }})</strong>
+      <p class="text-muted">
+        {{ vehicles }}
+      </p>
     </div>
   </div>
 </template>
@@ -26,5 +40,15 @@
 <script>
   export default {
     props: ['vehicleGroup'],
+
+    computed: {
+      users() {
+        return this.vehicleGroup.users.map((u) => `${u.name} ${u.surname}`).join(', ');
+      },
+
+      vehicles() {
+        return this.vehicleGroup.vehicles.map((v) => `${v.model} ${v.license_plate}`).join(', ');
+      },
+    },
   };
 </script>

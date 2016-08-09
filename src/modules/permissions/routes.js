@@ -34,7 +34,7 @@ export default {
   },
 
   '/permission_groups/:id/edit': {
-    name: 'userEdit',
+    name: 'permissionGroupEdit',
     component: PermissionGroupsEdit,
   },
 
