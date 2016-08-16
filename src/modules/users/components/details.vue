@@ -44,7 +44,12 @@
 
       <strong>Perfil</strong>
       <p class="text-muted">
-        {{ user.role_id }}
+        {{ user.role }}
+      </p>
+
+      <strong>Permissões</strong>
+      <p class="text-muted">
+        {{ user.permissions }}
       </p>
     </div>
   </div>

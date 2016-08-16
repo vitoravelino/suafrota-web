@@ -13,7 +13,7 @@
     </li>
     <li class="header">Relatórios</li>
     <!-- Optionally, you can add icons to the links -->
-    <li :class="{'active': $route.path == '/'}">
+    <li :class="{'active': $route.path == '/'}" v-if="canShowRelatorio">
       <a v-link="{path: '/'}">
         <i class="fa fa-link"></i> <span>Relatório 1</span>
       </a>
@@ -89,7 +89,7 @@
       </li>
     </multilevel>
 
-    <multilevel name="Permissões" icon="fa-tasks">
+    <multilevel name="Permissões" icon="fa-sitemap">
       <li :class="{'active': $route.path == '/permission_groups'}">
         <a v-link="{path: '/permission_groups'}">
           <i class="fa fa-circle-o"></i>
@@ -110,6 +110,12 @@
   import Multilevel from './multilevel';
 
   export default {
+    computed: {
+      canShowRelatorio() {
+        return this.$auth.can('relatorios.show');
+      },
+    },
+
     components: {
       Multilevel,
     },

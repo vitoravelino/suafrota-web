@@ -30,11 +30,6 @@
             <input type="text" name="name" id="name" class="form-control" placeholder="Digite o nome" v-model="permissionGroup.name" v-validate:name="['required']">
             <span class="help-block" v-show="isNameInvalid">Campo obrigatório</span>
           </div>
-          <div class="form-group" :class="{'has-error': isPrefixInvalid}">
-            <label for="prefix">Prefixo</label>
-            <input type="text" name="prefix" id="prefix" class="form-control" placeholder="Digite o prefixo" v-model="permissionGroup.prefix" v-validate:prefix="['required']">
-            <span class="help-block" v-show="isPrefixInvalid">Campo obrigatório</span>
-          </div>
         </div>
       </form>
     </validator>
@@ -56,12 +51,6 @@
         return this.$validation.name.required &&
               (this.$validation.name.dirty ||
                this.isSubmitted);
-      },
-
-      isPrefixInvalid() {
-        return this.$validation.prefix.invalid &&
-               (this.$validation.prefix.dirty ||
-                this.isSubmitted);
       },
     },
 

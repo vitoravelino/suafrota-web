@@ -1,3 +1,5 @@
 export default {
-  currentUser: (state) => state.user,
+  currentUser: ({ user }) => user,
+
+  availableCustomers: ({ user }) => user.available_customers,
 };

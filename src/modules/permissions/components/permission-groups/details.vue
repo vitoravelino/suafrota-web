@@ -1,10 +1,10 @@
 <template>
   <div class="box box-primary">
     <div class="box-header with-border">
-      <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/users' }">
+      <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/permission_groups' }">
         <i class="fa fa-arrow-left"></i>
       </a>
-      <a class="btn btn-primary" role="button" title="Editar grupo" v-link="{ name: 'userEdit', params: { id: permissionGroup.id } }">
+      <a class="btn btn-primary" role="button" title="Editar grupo" v-link="{ name: 'permissionGroupEdit', params: { id: permissionGroup.id } }">
         <i class="fa fa-edit"></i>
         &nbsp; Editar grupo
       </a>
@@ -18,13 +18,6 @@
       <strong>Nome</strong>
       <p class="text-muted">
         {{ permissionGroup.name }}
-      </p>
-
-      <hr />
-
-      <strong>Prefixo</strong>
-      <p class="text-muted">
-        {{ permissionGroup.prefix }}
       </p>
     </div>
   </div>

@@ -5,20 +5,22 @@
 </style>
 
 <template>
-  <li class="dropdown user user-menu", :class="{open: open}">
+  <li class="dropdown user user-menu hidden-xs", :class="{open: open}">
     <!-- Menu Toggle Button -->
     <a href="#" class="dropdown-toggle" @click.prevent="toggleDropdown()">
-      Atual: <span class="hidden-xs">STH</span>
+      Atual: {{ selectedCustomer.code }}
     </a>
 
     <ul class="dropdown-menu">
       <li>
         <multiselect
-          placeholder="STH (Stealth Organization)"
-          key="name"
-          label="name"
+          placeholder="Digite o cliente"
+          key="id"
+          :allow-empty="false",
+          :custom-label="customLabel"
           :options="customers"
-          :selected="null">
+          :selected="selectedCustomer"
+          @update="switchCustomer">
         </multiselect>
       </li>
     </ul>
@@ -26,17 +28,25 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   import Multiselect from 'vue-multiselect';
 
+  import SessionsService from '../../../sessions/service';
   import dom from '../../../../utils/dom';
 
   export default {
     data() {
       return {
-        customers: [],
         open: false,
+        selectedCustomer: null,
       };
     },
+
+    computed: mapGetters({
+      user: 'currentUser',
+      customers: 'availableCustomers',
+    }),
 
     methods: {
       toggleDropdown() {
@@ -48,6 +58,22 @@
           this.$set('open', false);
         }
       },
+
+      switchCustomer(customer) {
+        SessionsService.switchCustomer(customer.id).then(() => {
+          window.location.reload();
+        }).catch((a, b, c) => {
+          console.log('catch switchCustomer', a, b, c);
+        });
+      },
+
+      customLabel(customer) {
+        return `${customer.code} - ${customer.name}`;
+      },
+    },
+
+    created() {
+      this.$set('selectedCustomer', this.customers.find((c) => c.id === this.user.customer_id));
     },
 
     ready() {

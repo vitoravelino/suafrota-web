@@ -8,12 +8,14 @@ import { configRoutes } from './router/config';
 import { configValidators } from './validators';
 import { configInterceptors } from './interceptors';
 
-import store from './vuex/store';
+import Authorization from './plugins/authorization';
 import App from './modules/app';
+import store from './vuex/store';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VueValidator);
+Vue.use(Authorization);
 
 Vue.config.debug = process.env.DEBUG;
 

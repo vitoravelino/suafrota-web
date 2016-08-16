@@ -6,7 +6,7 @@ export default {
   fetchPermissionGroup({ commit }, id) {
     return PermissionGroupsService.get(id).then((response) => {
       const permissionGroup = response.json().data;
-      const permissions = permissionGroup.permissions;
+      const permissions = permissionGroup.permissions.data;
 
       delete permissionGroup.permissions;
 

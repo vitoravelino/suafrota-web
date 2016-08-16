@@ -27,7 +27,7 @@
         fields: {
           id: 'ID',
           name: 'Nome',
-          prefix: 'Prefixo',
+          'permissions.count': 'Qtd. permissões',
         },
       };
     },

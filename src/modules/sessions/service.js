@@ -14,6 +14,10 @@ function signOut() {
   return Vue.http.delete(`${ENDPOINT}/sign_out`);
 }
 
+function switchCustomer(id) {
+  return Vue.http.post(`${ENDPOINT}/switch_customer`, { id });
+}
+
 function getToken() {
   return window.localStorage.getItem('sth.xpto');
 }
@@ -46,4 +50,5 @@ export default {
   signIn,
   signOut,
   isLogged,
+  switchCustomer,
 };
