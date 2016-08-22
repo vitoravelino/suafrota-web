@@ -1,7 +1,7 @@
 <template>
   <content-header title="Grupo de veículos" subtitle="Listar todos">
     <div slot="button-bar">
-      <a class="btn btn-primary" v-link="{path: '/vehicle_groups/new'}">
+      <a class="btn btn-primary" v-link="{path: '/vehicle_groups/new'}" v-if="$auth.can('vehicleGroups.store')">
         <span class="fa fa-plus"></span>
         &nbsp; Criar grupo
       </a>
@@ -9,7 +9,15 @@
   </content-header>
 
   <content-main>
-    <data-table :collection="vehicle_groups" :fields="fields" :can-edit="true" @show="onShow" @edit="onEdit"></data-table>
+    <data-table
+      :collection="vehicle_groups"
+      :fields="fields"
+      :can-edit="$auth.can('vehicleGroups.update')"
+      :can-show="$auth.can('vehicleGroups.show')"
+      :can-destroy="$auth.can('vehicleGroups.destroy')"
+      @show="onShow"
+      @edit="onEdit">
+    </data-table>
   </content-main>
 </template>
 

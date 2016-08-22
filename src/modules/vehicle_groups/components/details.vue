@@ -4,11 +4,11 @@
         <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/vehicle_groups' }">
           <i class="fa fa-arrow-left"></i>
         </a>
-        <a class="btn btn-primary" role="button" title="Editar grupo" v-link="{ name: 'vehicleGroupEdit', params: { id: vehicleGroup.id } }">
+        <a class="btn btn-primary" role="button" title="Editar grupo" v-link="{ name: 'vehicleGroupEdit', params: { id: vehicleGroup.id } }" v-if="$auth.can('vehicleGroups.update')">
           <i class="fa fa-edit"></i>
           &nbsp; Editar grupo
         </a>
-        <button class="btn btn-danger pull-right" title="Remover grupo" @click.prevent="$emit('remove')">
+        <button class="btn btn-danger pull-right" title="Remover grupo" @click.prevent="$emit('remove')" v-if="$auth.can('vehicleGroups.destroy')">
           <i class="fa fa-trash"></i>
           &nbsp; Remover grupo
         </button>

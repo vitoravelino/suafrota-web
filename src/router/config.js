@@ -34,6 +34,8 @@ export function configRoutes(router) {
 
         SessionsService.setUser(user);
 
+        // FIX check authorization here
+        // when user reloads the page
         if (to.anon) {
           console.log('root');
           redirect('/');
@@ -53,9 +55,10 @@ export function configRoutes(router) {
     // if route requires permssion
     // and user doesn't have it
     // prevent it to happen
-    } else if (to.permission && !authorization.can(to.permission)) {
+    } else if ((to.permission && !authorization.can(to.permission)) ||
+               (to.role && !authorization.is(to.role))) {
       console.log('permission denied');
-      redirect(from.path);
+      redirect(from.path || '/');
 
     // if route is anon and logged,
     // redirect to root

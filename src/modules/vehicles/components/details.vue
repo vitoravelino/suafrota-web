@@ -4,11 +4,11 @@
         <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/vehicles' }">
           <i class="fa fa-arrow-left"></i>
         </a>
-        <a class="btn btn-primary" role="button" title="Editar veículo" v-link="{ name: 'vehicleEdit', params: { id: vehicle.id } }">
+        <a class="btn btn-primary" role="button" title="Editar veículo" v-link="{ name: 'vehicleEdit', params: { id: vehicle.id } }" $auth.can('vehicles.update')>
           <i class="fa fa-edit"></i>
           &nbsp; Editar veículo
         </a>
-        <button class="btn btn-danger pull-right" title="Remover veículo" @click.prevent="$emit('remove')">
+        <button class="btn btn-danger pull-right" title="Remover veículo" @click.prevent="$emit('remove')" $auth.can('vehicles.destroy')>
           <i class="fa fa-trash"></i>
           &nbsp; Remover veículo
         </button>

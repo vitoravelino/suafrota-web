@@ -10,11 +10,13 @@ import PermissionsEdit from './views/permissions/edit';
 export default {
   '/permission_groups': {
     component: PermissionGroupsList,
+    role: 'admin',
   },
 
   '/permission_groups/:id': {
     name: 'permissionGroupShow',
     component: PermissionGroupsShow,
+    role: 'admin',
 
     subRoutes: {
       '/': {
@@ -36,9 +38,11 @@ export default {
   '/permission_groups/:id/edit': {
     name: 'permissionGroupEdit',
     component: PermissionGroupsEdit,
+    role: 'admin',
   },
 
   '/permission_groups/new': {
     component: PermissionGroupsNew,
+    role: 'admin',
   },
 };

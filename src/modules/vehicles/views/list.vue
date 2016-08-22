@@ -1,7 +1,7 @@
 <template>
   <content-header title="Veículos" subtitle="Listar todos">
     <div slot="button-bar">
-      <a class="btn btn-primary" v-link="{path: '/vehicles/new'}">
+      <a class="btn btn-primary" v-link="{path: '/vehicles/new'}" v-if="$auth.can('vehicles.store')">
         <span class="fa fa-plus"></span>
         &nbsp; Criar veículo
       </a>
@@ -9,7 +9,14 @@
   </content-header>
 
   <content-main>
-    <data-table :collection="vehicles" :fields="fields" :can-edit="true" @show="onShow" @edit="onEdit"></data-table>
+    <data-table
+      :collection="vehicles"
+      :fields="fields"
+      :can-edit="$auth.can('vehicles.update')"
+      :can-show="$auth.can('vehicles.show')"
+      :can-destroy="$auth.can('vehicles.destroy')"
+      @show="onShow"
+      @edit="onEdit"></data-table>
   </content-main>
 </template>
 
