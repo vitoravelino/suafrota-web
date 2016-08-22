@@ -22,11 +22,6 @@ export function configRoutes(router) {
     const isLogged = SessionsService.isLogged();
     const authorization = Vue.auth;
 
-    // TODO review conditions and
-    // previous url on redirec tto login
-
-    console.log('from', from.path);
-    console.log('to', to.path);
     // checking if token still valid if not logged
     if (token && !isLogged) {
       UsersService.getProfile().then((data) => {
@@ -34,15 +29,7 @@ export function configRoutes(router) {
 
         SessionsService.setUser(user);
 
-        // FIX check authorization here
-        // when user reloads the page
-        if (to.anon) {
-          console.log('root');
-          redirect('/');
-        } else {
-          console.log('next!');
-          next();
-        }
+        next();
       }).catch(() => {
         redirect('/users/sign_in');
       });
@@ -50,6 +37,7 @@ export function configRoutes(router) {
     // if route requires auth and not logged,
     // redirect to sign in
     } else if (to.auth && !isLogged) {
+      SessionsService.setPreviousURL(to.path);
       redirect('/users/sign_in');
 
     // if route requires permssion
@@ -57,7 +45,6 @@ export function configRoutes(router) {
     // prevent it to happen
     } else if ((to.permission && !authorization.can(to.permission)) ||
                (to.role && !authorization.is(to.role))) {
-      console.log('permission denied');
       redirect(from.path || '/');
 
     // if route is anon and logged,
@@ -67,7 +54,9 @@ export function configRoutes(router) {
 
     // otherwise
     } else {
-      console.log('else');
+      if (to.path !== '/users/sign_in') {
+        SessionsService.setPreviousURL(null);
+      }
       next();
     }
   });

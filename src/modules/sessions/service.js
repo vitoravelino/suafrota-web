@@ -35,6 +35,19 @@ function setUser(user) {
   store.commit('SET_USER', user);
 }
 
+function getPreviousURL() {
+  return window.localStorage.getItem('sth.previous');
+}
+
+function setPreviousURL(path) {
+  if (!path) {
+    window.localStorage.removeItem('sth.previous');
+  } else {
+    window.localStorage.setItem('sth.previous', path);
+  }
+}
+
+
 /**
  * [isLogged description]
  * @return {Boolean} [description]
@@ -48,6 +61,8 @@ export default {
   getToken,
   destroy,
   setUser,
+  setPreviousURL,
+  getPreviousURL,
   signIn,
   signOut,
   isLogged,

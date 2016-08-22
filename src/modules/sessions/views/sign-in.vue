@@ -47,6 +47,8 @@
 <script>
   import iCheck from '../../common/components/icheck';
 
+  import SessionsService from '../service';
+
   import { mapActions } from 'vuex';
 
   export default {
@@ -78,7 +80,7 @@
 
         if (this.$validation.valid) {
           this.signIn(this.credentials).then(() => {
-            this.$router.go('/');
+            this.$router.go(SessionsService.getPreviousURL() || '/');
           });
         }
       },
