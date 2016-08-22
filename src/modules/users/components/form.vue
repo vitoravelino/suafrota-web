@@ -74,7 +74,7 @@
                 <li v-for="permission in permissionGroup.permissions.data">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" v-model="user.permissions" :value="permission.id" />
+                      <input type="checkbox" v-model="user.permissions_ids" :value="permission.id" />
                       {{ permission.description }}
                     </label>
                   </div>

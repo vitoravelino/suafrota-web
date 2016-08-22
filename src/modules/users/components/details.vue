@@ -1,3 +1,8 @@
+<style lang="sass" scoped>
+  .list-unstyled
+    padding-bottom: 10px
+</style>
+
 <template>
   <div class="box box-primary">
     <div class="box-header with-border">
@@ -43,9 +48,15 @@
       <hr />
 
       <strong>Permissões</strong>
-      <p class="text-muted">
-        {{ user.permissions }}
-      </p>
+      <ul class="list-unstyled text-muted" v-if="user.permissions">
+        <li v-for="(group, permissions) in user.permissions">
+          <strong>{{* group }}</strong>
+
+          <ul>
+            <li v-for="permission in permissions">{{* permission }}</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

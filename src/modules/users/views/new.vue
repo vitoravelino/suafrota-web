@@ -21,7 +21,7 @@
     data() {
       return {
         user: {
-          permissions: [],
+          permissions_ids: [],
         },
       };
     },
