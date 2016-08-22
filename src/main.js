@@ -19,14 +19,14 @@ Vue.use(Authorization);
 
 Vue.config.debug = process.env.DEBUG;
 
-export const router = new VueRouter();
+const router = new VueRouter();
 
 configRoutes(router);
 
 sync(store, router);
 
 configValidators();
-configInterceptors();
+configInterceptors(router);
 
 router.start({
   store,

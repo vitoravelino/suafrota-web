@@ -1,10 +1,6 @@
 import SessionsService from '../service';
 
 export default {
-  setUser({ commit }, user) {
-    commit('SET_USER', user);
-  },
-
   signIn({ commit }, credentials) {
     return SessionsService.signIn(credentials).then((data) => {
       const token = data.json().authenticated.token;

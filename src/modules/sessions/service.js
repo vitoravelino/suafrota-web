@@ -28,10 +28,11 @@ function setToken(token) {
 
 function destroy() {
   window.localStorage.removeItem('sth.xpto');
+  store.commit('REMOVE_USER');
 }
 
 function setUser(user) {
-  store.dispatch('setUser', user);
+  store.commit('SET_USER', user);
 }
 
 /**
@@ -39,7 +40,7 @@ function setUser(user) {
  * @return {Boolean} [description]
  */
 function isLogged() {
-  return store.getters.currentUser !== null;
+  return getToken() !== null && Object.keys(store.getters.currentUser).length;
 }
 
 export default {

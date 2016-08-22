@@ -8,7 +8,7 @@
   <li class="dropdown user user-menu hidden-xs", :class="{open: open}">
     <!-- Menu Toggle Button -->
     <a href="#" class="dropdown-toggle" @click.prevent="toggleDropdown()">
-      Atual: {{ selectedCustomer.code }}
+      Atual: <strong>{{ selectedCustomer.code }}</strong>
     </a>
 
     <ul class="dropdown-menu">

@@ -1,4 +1,5 @@
 export default {
-  user: null,
-  customer: null,
+  user: {},
+
+  availableCustomers: [],
 };

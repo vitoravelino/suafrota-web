@@ -1,17 +1,11 @@
 export default {
-  SET_TOKEN(state, token) {
-    state.token = token;
-  },
-
   SET_USER(state, user) {
     state.user = user;
+    state.availableCustomers = user.available_customers;
   },
 
   REMOVE_USER(state) {
-    state.user = null;
-  },
-
-  REMOVE_TOKEN(state) {
-    state.token = null;
+    state.user = {};
+    state.availableCustomers = [];
   },
 };

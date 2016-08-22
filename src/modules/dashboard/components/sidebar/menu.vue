@@ -34,7 +34,7 @@
         </a>
       </li>
     </multilevel>
-    <multilevel name="Veículos" icon="fa-car" v-if="$auth.canAny('vehicles')">
+    <multilevel name="Veículos" icon="fa-car" v-if="$auth.canAny('vehicles') || $auth.canAny('vehicleGroups')">
       <li :class="{'active': $route.path == '/vehicle_groups'}" v-if="$auth.can('vehicleGroups.list')">
         <a v-link="{path: '/vehicle_groups'}">
           <i class="fa fa-circle-o"></i>

@@ -1,8 +1,6 @@
 import SessionsService from '../service';
 
-import { router } from '../../../main';
-
-export default (http) => {
+export default (http, router) => {
   // request
   http.interceptors.push((request, next) => {
     const token = SessionsService.getToken();
@@ -31,8 +29,8 @@ export default (http) => {
       if (data.status === 401 &&
           (json.message === 'Token has expired' ||
            json.message === 'Token Signature could not be verified.')) {
-        SessionsService.destroy();
         router.go({ path: '/users/sign_in' });
+        SessionsService.destroy();
       }
     });
   });
