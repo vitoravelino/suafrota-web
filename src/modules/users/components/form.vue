@@ -6,7 +6,7 @@
 
 <template>
   <div class="row">
-    <div class="col-md-7">
+    <div class="{{* formGridClass }}">
       <div class="box box-primary">
         <validator name="validation">
           <form role="form" novalidate @submit.prevent="onSubmit">
@@ -18,11 +18,11 @@
                 <i class="fa fa-save"></i>
                 &nbsp; Salvar
               </button>
-              <button type="button" class="btn btn-default" @click.prevent="emitBack" v-if="edit">
+              <button type="button" class="btn btn-default" @click.prevent="emitBack" v-if="isEdit">
                 <i class="fa fa-times"></i>
                 &nbsp; Descartar mudanças
               </button>
-              <button type="button" class="btn btn-default" @click.prevent="emitBack" v-if="!edit">
+              <button type="button" class="btn btn-default" @click.prevent="emitBack" v-if="!isEdit">
                 <i class="fa fa-times"></i>
                 &nbsp; Descartar
               </button>
@@ -48,16 +48,9 @@
                 <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" v-model="user.email" v-validate:email="[ 'email' ]">
                 <span class="help-block" v-show="isEmailInvalid">Endereço de email inválido</span>
               </div>
-              <div class="form-group" :class="{'has-error': isCustomerInvalid}">
-                <label>Cliente</label>
-                <select class="form-control" v-model="user.customer_id" v-validate:customer="[ 'required' ]">
-                  <option value="{{ customer.id }}" v-for="customer in customers">{{ customer.name }}</option>
-                </select>
-                <span class="help-block" v-show="isCustomerInvalid">Campo obrigatório</span>
-              </div>
               <div class="form-group" :class="{'has-error': isRoleInvalid}">
                 <label>Perfil</label>
-                <select class="form-control" v-model="user.role" v-validate:role="[ 'required' ]">
+                <select class="form-control" v-model="user.role" v-validate:role="[ 'required' ]" :disabled="cannotAssignRole">
                   <option value="{{ key }}" v-for="(key, value) in roles">{{ value }}</option>
                 </select>
                 <span class="help-block" v-show="isRoleInvalid">Campo obrigatório</span>
@@ -68,14 +61,12 @@
       </div> <!-- .box -->
     </div> <!-- .col-md-7 -->
 
-    <div class="col-md-5">
+    <div class="col-md-5" v-if="$auth.can('users.assignPermissions')">
       <div class="box">
         <div class="box-header with-border">
           <h4 class="box-title">Permissões do usuário</h4>
         </div>
         <div class="box-body">
-          {{ user | json  }}
-          {{ permissions | json  }}
           <ul class="list-unstyled">
             <li v-for="permissionGroup in permissionGroups">
               <strong v-if="permissionGroup.permissions.count">{{ permissionGroup.name }}</strong>
@@ -83,7 +74,7 @@
                 <li v-for="permission in permissionGroup.permissions.data">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" v-model="permissions" :value="permission.id" />
+                      <input type="checkbox" v-model="user.permissions" :value="permission.id" />
                       {{ permission.description }}
                     </label>
                   </div>
@@ -98,27 +89,39 @@
 </template>
 
 <script>
-  import CustomersService from '../../customers/service';
+  import { mapGetters } from 'vuex';
+
   import PermissionGroupsService from '../../permissions/services/permission-groups';
+  import Roles from '../../users/roles';
 
   export default {
-    props: ['user', 'edit'],
+    props: {
+      user: Object,
+      isEdit: {
+        default: false,
+      },
+      canEdit: {
+        default: false,
+      },
+      canRemove: {
+        default: false,
+      },
+    },
 
     data() {
       return {
         isSubmitted: false,
-        roles: {
-          admin: 'Administrador',
-          manager: 'Gerente',
-          user: 'Usuário',
-        },
+        roles: {},
         customers: [],
         permissionGroups: [],
-        permissions: [],
       };
     },
 
     computed: {
+      formGridClass() {
+        return this.$auth.can('users.assignPermissions') ? 'col-md-7' : 'col-md-12';
+      },
+
       isNameInvalid() {
         return this.$validation.name.required &&
               (this.$validation.name.dirty ||
@@ -137,17 +140,19 @@
                 this.isSubmitted);
       },
 
-      isCustomerInvalid() {
-        return this.$validation.customer.invalid &&
-               (this.$validation.customer.dirty ||
-                this.isSubmitted);
-      },
-
       isRoleInvalid() {
         return this.$validation.role.invalid &&
                (this.$validation.role.dirty ||
                 this.isSubmitted);
       },
+
+      cannotAssignRole() {
+        const myself = this.user.id === this.currentUser.id;
+
+        return myself || (!this.$auth.is('admin') && !this.$auth.is('manager'));
+      },
+
+      ...mapGetters(['currentUser']),
     },
 
     methods: {
@@ -156,7 +161,6 @@
         this.isSubmitted = true;
 
         if (this.$validation.valid) {
-          this.$set('user.permissions', this.permissions);
           this.$emit('submit');
         }
       },
@@ -172,15 +176,15 @@
     },
 
     created() {
-      const customersPromise = CustomersService.all();
-      const permissionGroupsPromise = PermissionGroupsService.all();
+      this.$set('roles', Roles.for(this.currentUser.role));
 
-      Promise.all([customersPromise, permissionGroupsPromise]).then((values) => {
-        this.$set('customers', values[0].json().data);
-        this.$set('permissionGroups', values[1].json().data);
-      }).catch((response) => {
-        console.log('What to do?', response);
-      });
+      if (this.$auth.can('users.assignPermissions')) {
+        PermissionGroupsService.all().then((response) => {
+          this.$set('permissionGroups', response.json().data);
+        }).catch((response) => {
+          console.log('What to do?', response);
+        });
+      }
     },
   };
 </script>

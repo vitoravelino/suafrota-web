@@ -20,7 +20,9 @@
 
     data() {
       return {
-        user: {},
+        user: {
+          permissions: [],
+        },
       };
     },
 

@@ -73,7 +73,9 @@
     },
 
     created() {
-      this.$set('selectedCustomer', this.customers.find((c) => c.id === this.user.customer_id));
+      const selectedCustomer = this.customers.find((c) => c.id === this.user.customer_id);
+
+      this.$set('selectedCustomer', selectedCustomer);
     },
 
     ready() {

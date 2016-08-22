@@ -4,11 +4,11 @@
         <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/users' }">
           <i class="fa fa-arrow-left"></i>
         </a>
-        <a class="btn btn-primary" role="button" title="Editar usuário" v-link="{ name: 'userEdit', params: { id: user.id } }">
+        <a class="btn btn-primary" role="button" title="Editar usuário" v-link="{ name: 'userEdit', params: { id: user.id } }" v-if="$auth.can('users.update')">
           <i class="fa fa-edit"></i>
           &nbsp; Editar usuário
         </a>
-        <button class="btn btn-danger pull-right" title="Remover usuário" @click.prevent="$emit('remove')">
+        <button class="btn btn-danger pull-right" title="Remover usuário" @click.prevent="$emit('remove')" v-if="$auth.can('users.destroy')">
           <i class="fa fa-trash"></i>
           &nbsp; Remover usuário
         </button>
@@ -35,17 +35,12 @@
 
       <hr />
 
-      <strong>Cliente</strong>
+      <strong>Perfil</strong>
       <p class="text-muted">
-        {{ user.customer_id }}
+        {{* role }}
       </p>
 
       <hr />
-
-      <strong>Perfil</strong>
-      <p class="text-muted">
-        {{ user.role }}
-      </p>
 
       <strong>Permissões</strong>
       <p class="text-muted">
@@ -56,7 +51,15 @@
 </template>
 
 <script>
+  import Roles from '../../users/roles';
+
   export default {
     props: ['user'],
+
+    computed: {
+      role() {
+        return Roles.name(this.user.role);
+      },
+    },
   };
 </script>

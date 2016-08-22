@@ -12,6 +12,10 @@ class Authorization {
     return this.permissions.indexOf(permission) !== -1;
   }
 
+  canAny(prefix) {
+    return this.permissions.some((p) => p.indexOf(`${prefix}.`) !== -1);
+  }
+
   is(role) {
     return this.role === role;
   }

@@ -27,8 +27,8 @@
         <div class="box-body">
           <div class="form-group" :class="{'has-error': isNameInvalid}">
             <label for="name">Nome</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Digite o nome" v-model="permission.name" v-validate:name="['required']">
-            <span class="help-block" v-show="isNameInvalid">Campo obrigatório</span>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Digite o nome" v-model="permission.name" v-validate:name="['permission']">
+            <span class="help-block" v-show="isNameInvalid">Campo inválido (e.g.: prefixo.acao)</span>
           </div>
           <div class="form-group" :class="{'has-error': isDescriptionInvalid}">
             <label for="description">Descrição</label>
@@ -53,7 +53,7 @@
 
     computed: {
       isNameInvalid() {
-        return this.$validation.name.required &&
+        return this.$validation.name.permission &&
               (this.$validation.name.dirty ||
                this.isSubmitted);
       },

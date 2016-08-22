@@ -2,7 +2,15 @@
   <content-header title="Usuário" subtitle="Editar"></content-header>
 
   <content-main>
-    <user-form :user="user" edit="true" @submit="onSubmit" @back="onBack" @remove="onRemove"></user-form>
+    <user-form
+      :user="user"
+      :is-edit="true"
+      :can-edit="$auth.can('users.update')"
+      :can-destroy="$auth.can('users.destroy')"
+      @submit="onSubmit"
+      @back="onBack"
+      @remove="onRemove">
+    </user-form>
   </content-main>
 </template>
 

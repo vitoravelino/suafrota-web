@@ -1,7 +1,7 @@
 <template>
   <content-header title="Usuários" subtitle="Listar todos">
     <div slot="button-bar">
-      <a class="btn btn-primary" v-link="{path: '/users/new'}">
+      <a class="btn btn-primary" v-link="{path: '/users/new'}" v-if="$auth.can('users.store')">
         <span class="fa fa-plus"></span>
         &nbsp; Criar usuário
       </a>
@@ -9,7 +9,15 @@
   </content-header>
 
   <content-main>
-    <data-table :collection="users" :fields="fields" :can-edit="true" @show="onShow" @edit="onEdit"></data-table>
+    <data-table
+      :collection="users"
+      :fields="fields"
+      :can-show="$auth.can('users.show')"
+      :can-edit="$auth.can('users.update')"
+      :can-remove="$auth.can('users.destroy')"
+      @show="onShow"
+      @edit="onEdit">
+    </data-table>
   </content-main>
 </template>
 

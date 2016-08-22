@@ -20,47 +20,47 @@
     </li>
     <li class="header">Administração</li>
     <!-- Optionally, you can add icons to the links -->
-    <multilevel name="Usuários" icon="fa-user">
-      <li :class="{'active': $route.path == '/users'}">
+    <multilevel name="Usuários" icon="fa-user"  v-if="$auth.canAny('users')">
+      <li :class="{'active': $route.path == '/users'}" v-if="$auth.can('users.list')">
         <a v-link="{path: '/users'}">
           <i class="fa fa-circle-o"></i>
           Listar todos
         </a>
       </li>
-      <li :class="{'active': $route.path == '/users/new'}">
+      <li :class="{'active': $route.path == '/users/new'}" v-if="$auth.can('users.store')">
         <a v-link="{path: '/users/new'}">
           <i class="fa fa-circle-o"></i>
           Criar novo
         </a>
       </li>
     </multilevel>
-    <multilevel name="Veículos" icon="fa-car">
-      <li :class="{'active': $route.path == '/vehicle_groups'}">
+    <multilevel name="Veículos" icon="fa-car" v-if="$auth.canAny('vehicles')">
+      <li :class="{'active': $route.path == '/vehicle_groups'}" v-if="$auth.can('vehicleGroups.list')">
         <a v-link="{path: '/vehicle_groups'}">
           <i class="fa fa-circle-o"></i>
           Listar grupos
         </a>
       </li>
-      <li :class="{'active': $route.path == '/vehicle_groups/new'}">
+      <li :class="{'active': $route.path == '/vehicle_groups/new'}" v-if="$auth.can('vehicleGroups.store')">
         <a v-link="{path: '/vehicle_groups/new'}">
           <i class="fa fa-circle-o"></i>
           Criar grupo
         </a>
       </li>
-      <li :class="{'active': $route.path == '/vehicles'}">
+      <li :class="{'active': $route.path == '/vehicles'}" v-if="$auth.can('vehicles.list')">
         <a v-link="{path: '/vehicles'}">
           <i class="fa fa-circle-o"></i>
           Listar veículos
         </a>
       </li>
-      <li :class="{'active': $route.path == '/vehicles/new'}">
+      <li :class="{'active': $route.path == '/vehicles/new'}" v-if="$auth.can('vehicles.store')">
         <a v-link="{path: '/vehicles/new'}">
           <i class="fa fa-circle-o"></i>
           Criar veículo
         </a>
       </li>
     </multilevel>
-    <multilevel name="Equipamentos" icon="fa-plug">
+    <multilevel name="Equipamentos" icon="fa-plug" v-if="$auth.is('admin')">
       <li :class="{'active': $route.path == '/equipments'}">
         <a v-link="{path: '/equipments'}">
           <i class="fa fa-circle-o"></i>
@@ -74,7 +74,7 @@
         </a>
       </li>
     </multilevel>
-    <multilevel name="Clientes" icon="fa-users">
+    <multilevel name="Clientes" icon="fa-users" v-if="$auth.is('admin')">
       <li :class="{'active': $route.path == '/customers'}">
         <a v-link="{path: '/customers'}">
           <i class="fa fa-circle-o"></i>
@@ -89,7 +89,7 @@
       </li>
     </multilevel>
 
-    <multilevel name="Permissões" icon="fa-sitemap">
+    <multilevel name="Permissões" icon="fa-sitemap" v-if="$auth.is('admin')">
       <li :class="{'active': $route.path == '/permission_groups'}">
         <a v-link="{path: '/permission_groups'}">
           <i class="fa fa-circle-o"></i>
