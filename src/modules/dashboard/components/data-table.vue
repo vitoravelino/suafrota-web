@@ -66,7 +66,7 @@
 <script>
   import DataTableFilters from './data-table/filters';
   import DataTablePagination from './data-table/pagination';
-  import { deepFind } from '../../../utils/object';
+  import { deepFind } from 'utils/object';
 
   export default {
     props: {

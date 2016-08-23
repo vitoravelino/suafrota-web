@@ -7,7 +7,7 @@ import { sync } from 'vuex-router-sync';
 import { configRoutes } from './router/config';
 import { configValidators } from './validators';
 import { configInterceptors } from './interceptors';
-import { registerGlobalComponents } from './modules/common/config';
+import { registerGlobalComponents } from './modules/dashboard/config';
 
 import Authorization from './plugins/authorization';
 import App from './modules/app';

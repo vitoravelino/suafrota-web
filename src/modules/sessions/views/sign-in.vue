@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import iCheck from '../../common/components/icheck';
+  import iCheck from 'modules/dashboard/components/icheck';
 
   import SessionsService from '../service';
 

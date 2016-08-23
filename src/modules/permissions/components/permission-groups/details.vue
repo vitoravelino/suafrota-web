@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import DataTable from '../../../common/components/data-table';
+  import DataTable from 'modules/dashboard/components/data-table';
 
   export default {
     props: ['permissionGroup'],

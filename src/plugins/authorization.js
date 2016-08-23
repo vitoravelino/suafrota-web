@@ -17,7 +17,6 @@ class Authorization {
   }
 
   is(role) {
-    console.log(this.role, role);
     return this.role === role;
   }
 

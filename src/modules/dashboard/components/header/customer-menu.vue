@@ -32,8 +32,8 @@
 
   import Multiselect from 'vue-multiselect';
 
-  import SessionsService from '../../../sessions/service';
-  import dom from '../../../../utils/dom';
+  import SessionsService from 'modules/sessions/service';
+  import dom from 'utils/dom';
 
   export default {
     data() {

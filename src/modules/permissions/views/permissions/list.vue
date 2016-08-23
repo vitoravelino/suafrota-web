@@ -13,8 +13,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
 
-  import ContentInnerHeader from '../../../dashboard/components/content/inner-header';
-  import DataTable from '../../../common/components/data-table';
+  import DataTable from 'modules/dashboard/components/data-table';
 
   export default {
     data() {
@@ -59,7 +58,6 @@
 
     components: {
       DataTable,
-      ContentInnerHeader,
     },
   };
 </script>

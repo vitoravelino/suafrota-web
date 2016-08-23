@@ -16,9 +16,10 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.jpg'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'src': path.resolve(__dirname, '../src'),
+      'modules': path.resolve(__dirname, '../src/modules'),
+      'utils': path.resolve(__dirname, '../src/utils'),
+      'mixins': path.resolve(__dirname, '../src/mixins'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components'),
       'admin-lte': path.resolve(__dirname, '../node_modules/admin-lte')
     }
   },

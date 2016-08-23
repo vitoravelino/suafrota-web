@@ -1,6 +1,6 @@
 import PermissionGroupsService from '../services/permission-groups';
 import PermissionsService from '../services/permissions';
-import { findIndex } from '../../../utils/array';
+import { findIndex } from 'utils/array';
 
 export default {
   fetchPermissionGroup({ commit }, id) {

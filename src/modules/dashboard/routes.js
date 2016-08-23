@@ -13,11 +13,15 @@ const routes = {
   auth: true,
 };
 
-Object.assign(routes.subRoutes, UsersRoutes);
-Object.assign(routes.subRoutes, VehiclesRoutes);
-Object.assign(routes.subRoutes, EquipmentsRoutes);
-Object.assign(routes.subRoutes, CustomersRoutes);
-Object.assign(routes.subRoutes, PermissionsRoutes);
-Object.assign(routes.subRoutes, VehicleGroupsRoutes);
+const subRoutes = [
+  UsersRoutes,
+  VehiclesRoutes,
+  EquipmentsRoutes,
+  CustomersRoutes,
+  PermissionsRoutes,
+  VehicleGroupsRoutes,
+];
+
+Object.assign(routes.subRoutes, ...subRoutes);
 
 export default routes;

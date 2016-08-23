@@ -7,11 +7,9 @@
 </template>
 
 <script>
-  import ContentHeader from '../../dashboard/components/content/header';
-  import ContentMain from '../../dashboard/components/content/main';
-  import VehicleGroupForm from '../components/form';
+  import HistoryMixin from 'mixins/history';
 
-  import HistoryMixin from '../../../mixins/history';
+  import VehicleGroupForm from '../components/form';
 
   import VehicleGroupsService from '../service';
 
@@ -61,8 +59,6 @@
     },
 
     components: {
-      ContentHeader,
-      ContentMain,
       VehicleGroupForm,
     },
   };

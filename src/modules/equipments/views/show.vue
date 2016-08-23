@@ -7,8 +7,6 @@
 </template>
 
 <script>
-  import ContentHeader from '../../dashboard/components/content/header';
-  import ContentMain from '../../dashboard/components/content/main';
   import EquipmentDetails from '../components/details';
 
   import EquipmentsService from '../service';
@@ -46,8 +44,6 @@
     },
 
     components: {
-      ContentHeader,
-      ContentMain,
       EquipmentDetails,
     },
   };

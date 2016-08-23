@@ -1,7 +1,7 @@
-import NotFound from '../modules/common/views/not-found';
+import NotFound from 'modules/dashboard/views/not-found';
 
-import DashboardRoutes from '../modules/dashboard/routes';
-import SessionsRoutes from '../modules/sessions/routes';
+import DashboardRoutes from 'modules/dashboard/routes';
+import SessionsRoutes from 'modules/sessions/routes';
 
 const routes = {
   '*': {

@@ -15,11 +15,9 @@
 </template>
 
 <script>
-  import ContentHeader from '../../dashboard/components/content/header';
-  import ContentMain from '../../dashboard/components/content/main';
-  import UserForm from '../components/form';
+  import HistoryMixin from 'mixins/history';
 
-  import HistoryMixin from '../../../mixins/history';
+  import UserForm from '../components/form';
 
   import UsersService from '../service';
 
@@ -69,8 +67,6 @@
     },
 
     components: {
-      ContentHeader,
-      ContentMain,
       UserForm,
     },
   };

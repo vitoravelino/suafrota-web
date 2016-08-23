@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import range from '../../../../utils/range';
+  import range from 'utils/range';
 
   export default {
     props: ['total', 'itensPerPage', 'currentPage'],

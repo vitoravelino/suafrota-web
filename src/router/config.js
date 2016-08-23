@@ -3,8 +3,8 @@ import Vue from 'vue';
 import store from '../vuex/store';
 import routes from './routes';
 
-import UsersService from '../modules/users/service';
-import SessionsService from '../modules/sessions/service';
+import UsersService from 'modules/users/service';
+import SessionsService from 'modules/sessions/service';
 
 export function configRoutes(router) {
   router.map(routes);

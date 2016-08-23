@@ -11,8 +11,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
 
-  import ContentHeader from '../../../dashboard/components/content/header';
-  import ContentMain from '../../../dashboard/components/content/main';
   import PermissionGroupDetails from '../../components/permission-groups/details';
 
   import PermissionGroupsService from '../../services/permission-groups';
@@ -47,8 +45,6 @@
     },
 
     components: {
-      ContentHeader,
-      ContentMain,
       PermissionGroupDetails,
     },
   };

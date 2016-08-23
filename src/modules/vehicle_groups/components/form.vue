@@ -126,8 +126,8 @@
 <script>
   import Multiselect from 'vue-multiselect';
 
-  import VehiclesService from '../../vehicles/service';
-  import UsersService from '../../users/service';
+  import VehiclesService from 'modules/vehicles/service';
+  import UsersService from 'modules/users/service';
 
   export default {
     props: ['vehicleGroup', 'edit'],

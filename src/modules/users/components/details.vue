@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import Roles from '../../users/roles';
+  import Roles from 'modules/users/roles';
 
   export default {
     props: ['user'],

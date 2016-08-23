@@ -14,9 +14,7 @@
 </template>
 
 <script>
-  import ContentHeader from '../../dashboard/components/content/header';
-  import ContentMain from '../../dashboard/components/content/main';
-  import DataTable from '../../common/components/data-table';
+  import DataTable from 'modules/dashboard/components/data-table';
 
   import CustomersService from '../service';
 
@@ -52,8 +50,6 @@
 
     components: {
       DataTable,
-      ContentHeader,
-      ContentMain,
     },
   };
 </script>

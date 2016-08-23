@@ -91,7 +91,7 @@
 <script>
   import { mapGetters } from 'vuex';
 
-  import PermissionGroupsService from '../../permissions/services/permission-groups';
+  import PermissionGroupsService from 'modules/permissions/services/permission-groups';
   import Roles from '../../users/roles';
 
   export default {

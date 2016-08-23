@@ -7,11 +7,9 @@
 </template>
 
 <script>
-  import ContentHeader from '../../../dashboard/components/content/header';
-  import ContentMain from '../../../dashboard/components/content/main';
-  import PermissionGroupForm from '../../components/permission-groups/form';
+  import HistoryMixin from 'mixins/history';
 
-  import HistoryMixin from '../../../../mixins/history';
+  import PermissionGroupForm from '../../components/permission-groups/form';
 
   import PermissionGroupsService from '../../services/permission-groups';
 
@@ -61,8 +59,6 @@
     },
 
     components: {
-      ContentHeader,
-      ContentMain,
       PermissionGroupForm,
     },
   };

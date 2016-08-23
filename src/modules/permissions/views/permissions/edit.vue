@@ -12,10 +12,9 @@
 <script>
   import { mapActions } from 'vuex';
 
-  import ContentInnerHeader from '../../../dashboard/components/content/inner-header';
-  import PermissionForm from '../../components/permissions/form';
+  import HistoryMixin from 'mixins/history';
 
-  import HistoryMixin from '../../../../mixins/history';
+  import PermissionForm from '../../components/permissions/form';
 
   import PermissionsService from '../../services/permissions';
 
@@ -70,7 +69,6 @@
     },
 
     components: {
-      ContentInnerHeader,
       PermissionForm,
     },
   };
