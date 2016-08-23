@@ -18,7 +18,7 @@
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <customer-menu></customer-menu v-if="$auth.is('admin')">
+          <customer-menu v-if="$auth.is('admin')"></customer-menu>
           <user-account-menu></user-account-menu>
         </ul>
       </div>
