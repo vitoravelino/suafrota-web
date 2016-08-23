@@ -1,24 +1,11 @@
-<style lang="sass">
-  .inner-content-header
-    margin: 15px 0
-
-    h4
-      float: left
-      line-height: 34px
-      margin: 0
-
-    .btn
-      float: right
-</style>
-
 <template>
-  <div class="inner-content-header clearfix">
+  <content-inner-header>
     <h4>Permissões de {{ permissionGroup.name }}</h4>
     <a class="btn btn-primary" v-link="{ name: 'permissionNew', params: { id: permissionGroup.id } }">
       <span class="fa fa-plus"></span>
       &nbsp; Criar permissão
     </a>
-  </div>
+  </content-inner-header>
 
   <data-table :collection="permissions" :fields="fields" :can-show="false" :can-edit="true" :can-remove="true" @edit="onEdit" @remove="onRemove"></data-table>
 </template>
@@ -26,8 +13,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
 
-  import ContentHeader from '../../../dashboard/components/content/header';
-  import ContentMain from '../../../dashboard/components/content/main';
+  import ContentInnerHeader from '../../../dashboard/components/content/inner-header';
   import DataTable from '../../../common/components/data-table';
 
   export default {
@@ -73,8 +59,7 @@
 
     components: {
       DataTable,
-      ContentHeader,
-      ContentMain,
+      ContentInnerHeader,
     },
   };
 </script>
