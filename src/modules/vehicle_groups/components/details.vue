@@ -1,20 +1,20 @@
 <template>
-  <div class="box box-primary">
-    <div class="box-header with-border">
-        <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/vehicle_groups' }">
-          <i class="fa fa-arrow-left"></i>
-        </a>
-        <a class="btn btn-primary" role="button" title="Editar grupo" v-link="{ name: 'vehicleGroupEdit', params: { id: vehicleGroup.id } }" v-if="$auth.can('vehicleGroups.update')">
-          <i class="fa fa-edit"></i>
-          &nbsp; Editar grupo
-        </a>
-        <button class="btn btn-danger pull-right" title="Remover grupo" @click.prevent="$emit('remove')" v-if="$auth.can('vehicleGroups.destroy')">
-          <i class="fa fa-trash"></i>
-          &nbsp; Remover grupo
-        </button>
-      </div>
+  <box class="box-primary">
+    <box-header class="with-border">
+      <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/vehicle_groups' }">
+        <i class="fa fa-arrow-left"></i>
+      </a>
+      <a class="btn btn-primary" role="button" title="Editar grupo" v-link="{ name: 'vehicleGroupEdit', params: { id: vehicleGroup.id } }" v-if="$auth.can('vehicleGroups.update')">
+        <i class="fa fa-edit"></i>
+        &nbsp; Editar grupo
+      </a>
+      <button class="btn btn-danger pull-right" title="Remover grupo" @click.prevent="$emit('remove')" v-if="$auth.can('vehicleGroups.destroy')">
+        <i class="fa fa-trash"></i>
+        &nbsp; Remover grupo
+      </button>
+    </box-header>
 
-    <div class="box-body">
+    <box-body>
       <strong>Modelo</strong>
       <p class="text-muted">
         {{ vehicleGroup.name }}
@@ -33,8 +33,8 @@
       <p class="text-muted">
         {{ vehicles }}
       </p>
-    </div>
-  </div>
+    </box-body>
+  </box>
 </template>
 
 <script>

@@ -19,13 +19,13 @@
 </style>
 
 <template>
-  <div class="box">
-    <div class="box-header" v-if="title">
+  <box>
+    <box-header v-if="title">
       <h3 class="box-title">{{ title }}</h3>
-    </div>
+    </box-header>
     <!-- /.box-header -->
 
-    <div class="box-body">
+    <box-body>
       <data-table-filters :limit.sync="limit" :filter-by.sync="filterBy" :filter-columns.sync="filterColumns" :fields="fields"></data-table-filters>
 
       <div class="table-responsive">
@@ -59,8 +59,8 @@
       </div> <!-- /.table-responsive -->
 
       <data-table-pagination :total.sync="filteredTotal" :current-page.sync="currentPage" :itens-per-page.sync="limit"></data-table-pagination>
-    </div>
-  </div> <!-- /.box-body -->
+    </box-body>
+  </box>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
-  <div class="box box-primary">
-    <div class="box-header with-border">
+  <box class="box-primary">
+    <box-header class="with-border">
       <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/permission_groups' }">
         <i class="fa fa-arrow-left"></i>
       </a>
@@ -12,15 +12,15 @@
         <i class="fa fa-trash"></i>
         &nbsp; Remover grupo
       </button>
-    </div>
+    </box-header>
 
-    <div class="box-body">
+    <box-body>
       <strong>Nome</strong>
       <p class="text-muted">
         {{ permissionGroup.name }}
       </p>
-    </div>
-  </div>
+    </box-body>
+  </box>
 </template>
 
 <script>

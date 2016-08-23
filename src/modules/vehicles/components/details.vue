@@ -1,20 +1,20 @@
 <template>
-  <div class="box box-primary">
-    <div class="box-header with-border">
-        <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/vehicles' }">
-          <i class="fa fa-arrow-left"></i>
-        </a>
-        <a class="btn btn-primary" role="button" title="Editar veículo" v-link="{ name: 'vehicleEdit', params: { id: vehicle.id } }" $auth.can('vehicles.update')>
-          <i class="fa fa-edit"></i>
-          &nbsp; Editar veículo
-        </a>
-        <button class="btn btn-danger pull-right" title="Remover veículo" @click.prevent="$emit('remove')" $auth.can('vehicles.destroy')>
-          <i class="fa fa-trash"></i>
-          &nbsp; Remover veículo
-        </button>
-      </div>
+  <box class="box-primary">
+    <box-header class="with-border">
+      <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/vehicles' }">
+        <i class="fa fa-arrow-left"></i>
+      </a>
+      <a class="btn btn-primary" role="button" title="Editar veículo" v-link="{ name: 'vehicleEdit', params: { id: vehicle.id } }" $auth.can('vehicles.update')>
+        <i class="fa fa-edit"></i>
+        &nbsp; Editar veículo
+      </a>
+      <button class="btn btn-danger pull-right" title="Remover veículo" @click.prevent="$emit('remove')" $auth.can('vehicles.destroy')>
+        <i class="fa fa-trash"></i>
+        &nbsp; Remover veículo
+      </button>
+    </box-header>
 
-    <div class="box-body">
+    <box-body>
       <strong>Modelo</strong>
       <p class="text-muted">
         {{ vehicle.model }}
@@ -40,8 +40,8 @@
       <p class="text-muted">
         <a v-link="{ name: 'equipmentShow', params: { id: equipment.id }}" v-for="equipment in vehicle.equipments">{{ equipment.serial }}</a>
       </p>
-    </div>
-  </div>
+    </box-body>
+  </box>
 </template>
 
 <script>

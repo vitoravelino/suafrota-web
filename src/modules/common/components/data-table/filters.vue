@@ -1,25 +1,3 @@
-<style lang="sass">
-  .multiselect
-    min-height: 34px !important
-
-  .multiselect__tags
-    border-color: #d2d6de !important
-    border-radius: 0 !important
-    min-height: 35px !important
-    padding-top: 5px !important
-
-  .multiselect__tag
-    margin-bottom: 3px !important
-
-  .multiselect__select
-    height: 34px !important
-
-  .multiselect__input,
-  .multiselect__single
-    margin-bottom: 5px  !important
-
-</style>
-
 <style lang="sass" scoped>
   .filters
     label

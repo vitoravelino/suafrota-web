@@ -1,0 +1,30 @@
+.multiselect
+  min-height: 34px
+
+  &__tags
+    border-color: #d2d6de
+    border-radius: 0
+    min-height: 35px
+    padding-top: 5px
+
+  &__tag
+    margin-bottom: 3px
+    background: #3c8dbc
+
+  &__tag-icon
+    &:hover
+      background: #367fa9
+
+    &:after
+      color: darken(#367fa9, 15%)
+
+  &__option--highlight
+    &, &:after
+      background: #3c8dbc
+
+  &__select
+    height: 34px
+
+  &__input,
+  &__single
+    margin-bottom: 5px

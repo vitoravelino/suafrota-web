@@ -1,20 +1,20 @@
 <template>
-  <div class="box box-primary">
-    <div class="box-header with-border">
-        <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/equipments' }">
-          <i class="fa fa-arrow-left"></i>
-        </a>
-        <a class="btn btn-primary" role="button" title="Editar equipamento" v-link="{ name: 'equipmentEdit', params: { id: equipment.id } }">
-          <i class="fa fa-edit"></i>
-          &nbsp; Editar equipamento
-        </a>
-        <button class="btn btn-danger pull-right" title="Remover equipamento" @click.prevent="$emit('remove')">
-          <i class="fa fa-trash"></i>
-          &nbsp; Remover equipamento
-        </button>
-      </div>
+  <box class="box-primary">
+    <box-header class="with-border">
+      <a class="btn btn-default" title="Voltar p/ listar todos" role="button" v-link="{ path: '/equipments' }">
+        <i class="fa fa-arrow-left"></i>
+      </a>
+      <a class="btn btn-primary" role="button" title="Editar equipamento" v-link="{ name: 'equipmentEdit', params: { id: equipment.id } }">
+        <i class="fa fa-edit"></i>
+        &nbsp; Editar equipamento
+      </a>
+      <button class="btn btn-danger pull-right" title="Remover equipamento" @click.prevent="$emit('remove')">
+        <i class="fa fa-trash"></i>
+        &nbsp; Remover equipamento
+      </button>
+    </box-header>
 
-    <div class="box-body">
+    <box-body>
       <strong>Modelo</strong>
       <p class="text-muted">
         {{ equipment.model }}
@@ -33,8 +33,8 @@
       <p class="text-muted">
         {{ vehicle }}
       </p>
-    </div>
-  </div>
+    </box-body>
+  </box>
 </template>
 
 <script>

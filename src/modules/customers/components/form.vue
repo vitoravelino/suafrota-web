@@ -1,8 +1,8 @@
 <template>
-  <div class="box box-primary">
+  <box class="box-primary">
     <validator name="validation">
       <form role="form" novalidate @submit.prevent="onSubmit">
-        <div class="box-header with-border">
+        <box-header class="with-border">
           <button type="button" class="btn btn-default" @click.prevent="emitBack">
             <i class="fa fa-arrow-left"></i>
           </button>
@@ -22,9 +22,9 @@
             <i class="fa fa-trash"></i>
             &nbsp; Remover cliente
           </button>
-        </div>
+        </box-header>
 
-        <div class="box-body">
+        <box-body>
           <div class="form-group" :class="{'has-error': isNameInvalid}">
             <label for="name">Razão Social</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="Digite a razão social" v-model="customer.name" v-validate:name="['required']">
@@ -40,10 +40,10 @@
             <input type="text" name="code" id="code" class="form-control" placeholder="Digite o código" v-model="customer.code" v-validate:code="['customer_code']">
             <span class="help-block" v-show="isCodeInvalid">Código inválido (e.g.: ABC, DEF, etc)</span>
           </div>
-        </div>
+        </box-body>
       </form>
     </validator>
-  </div>
+  </box>
 </template>
 
 <script>

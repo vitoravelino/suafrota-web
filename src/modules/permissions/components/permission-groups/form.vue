@@ -1,8 +1,8 @@
 <template>
-  <div class="box box-primary">
+  <box class="box-primary">
     <validator name="validation">
       <form role="form" novalidate @submit.prevent="onSubmit">
-        <div class="box-header with-border">
+        <box-header class="with-border">
           <button type="button" class="btn btn-default" @click.prevent="emitBack">
             <i class="fa fa-arrow-left"></i>
           </button>
@@ -22,18 +22,18 @@
             <i class="fa fa-trash"></i>
             &nbsp; Remover grupo
           </button>
-        </div>
+        </box-header>
 
-        <div class="box-body">
+        <box-body>
           <div class="form-group" :class="{'has-error': isNameInvalid}">
             <label for="name">Nome</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="Digite o nome" v-model="permissionGroup.name" v-validate:name="['required']">
             <span class="help-block" v-show="isNameInvalid">Campo obrigatório</span>
           </div>
-        </div>
+        </box-body>
       </form>
     </validator>
-  </div>
+  </box>
 </template>
 
 <script>
