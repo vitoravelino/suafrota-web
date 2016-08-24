@@ -14,7 +14,7 @@
       :fields="fields"
       :can-edit="$auth.is('admin')"
       :can-show="$auth.is('admin')"
-      :can-destroy="$auth.is('admin')"
+      :can-remove="$auth.is('admin')"
       @show="onShow"
       @edit="onEdit">
     </data-table>

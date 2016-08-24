@@ -6,6 +6,9 @@ import routes from './routes';
 import UsersService from 'modules/users/service';
 import SessionsService from 'modules/sessions/service';
 
+import { SIGN_IN_URL } from 'modules/sessions/router/paths';
+import { ROOT_URL } from './paths';
+
 export function configRoutes(router) {
   router.map(routes);
 
@@ -31,30 +34,30 @@ export function configRoutes(router) {
 
         next();
       }).catch(() => {
-        redirect('/users/sign_in');
+        redirect(SIGN_IN_URL);
       });
 
     // if route requires auth and not logged,
     // redirect to sign in
     } else if (to.auth && !isLogged) {
       SessionsService.setPreviousURL(to.path);
-      redirect('/users/sign_in');
+      redirect(SIGN_IN_URL);
 
     // if route requires permssion
     // and user doesn't have it
     // prevent it to happen
     } else if ((to.permission && !authorization.can(to.permission)) ||
                (to.role && !authorization.is(to.role))) {
-      redirect(from.path || '/');
+      redirect(from.path || ROOT_URL);
 
     // if route is anon and logged,
     // redirect to root
     } else if (to.anon && isLogged) {
-      redirect('/');
+      redirect(ROOT_URL);
 
     // otherwise
     } else {
-      if (to.path !== '/users/sign_in') {
+      if (to.path !== SIGN_IN_URL) {
         SessionsService.setPreviousURL(null);
       }
       next();

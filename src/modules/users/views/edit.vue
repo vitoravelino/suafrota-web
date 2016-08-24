@@ -6,7 +6,7 @@
       :user="user"
       :is-edit="true"
       :can-edit="$auth.can('users.update')"
-      :can-destroy="$auth.can('users.destroy')"
+      :can-remove="$auth.can('users.destroy')"
       @submit="onSubmit"
       @remove="onRemove">
     </user-form>

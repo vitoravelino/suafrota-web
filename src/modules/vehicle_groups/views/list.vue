@@ -14,7 +14,7 @@
       :fields="fields"
       :can-edit="$auth.can('vehicleGroups.update')"
       :can-show="$auth.can('vehicleGroups.show')"
-      :can-destroy="$auth.can('vehicleGroups.destroy')"
+      :can-remove="$auth.can('vehicleGroups.destroy')"
       @show="onShow"
       @edit="onEdit">
     </data-table>

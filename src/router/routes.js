@@ -1,7 +1,7 @@
 import NotFound from 'modules/dashboard/views/not-found';
 
 import DashboardRoutes from 'modules/dashboard/routes';
-import SessionsRoutes from 'modules/sessions/routes';
+import SessionsRoutes from 'modules/sessions/router/routes';
 
 const routes = {
   '*': {

@@ -1,11 +1,11 @@
 import Layout from './views/layout';
 
-import UsersRoutes from 'modules/users/routes';
-import VehiclesRoutes from 'modules/vehicles/routes';
-import EquipmentsRoutes from 'modules/equipments/routes';
-import CustomersRoutes from 'modules/customers/routes';
-import PermissionsRoutes from 'modules/permissions/routes';
-import VehicleGroupsRoutes from 'modules/vehicle_groups/routes';
+import UsersRoutes from 'modules/users/router/routes';
+import VehiclesRoutes from 'modules/vehicles/router/routes';
+import EquipmentsRoutes from 'modules/equipments/router/routes';
+import CustomersRoutes from 'modules/customers/router/routes';
+import PermissionsRoutes from 'modules/permissions/router/routes';
+import VehicleGroupsRoutes from 'modules/vehicle_groups/router/routes';
 
 const routes = {
   component: Layout,
