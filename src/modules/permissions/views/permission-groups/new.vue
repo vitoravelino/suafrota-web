@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import PermissionGroupForm from '../../components/permission-groups/form';
 
   import PermissionGroupsService from '../../services/permission-groups';
@@ -23,7 +25,7 @@
         PermissionGroupsService.save(this.permissionGroup).then((response) => {
           const permissionGroup = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Grupo de permissões criado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -32,6 +34,8 @@
           this.$router.go({ name: 'permissionGroupShow', params: { id: permissionGroup.id } });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

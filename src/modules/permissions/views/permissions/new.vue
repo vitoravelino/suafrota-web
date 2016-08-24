@@ -27,7 +27,7 @@
           const permission = response.json().data;
           const permissionGroupId = permission.permission_group_id;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Permissão criada com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -37,7 +37,7 @@
         });
       },
 
-      ...mapActions(['savePermission']),
+      ...mapActions(['setAlert', 'savePermission']),
     },
 
     components: {

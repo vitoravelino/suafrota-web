@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import VehicleGroupForm from '../components/form';
 
   import VehicleGroupsService from '../service';
@@ -23,7 +25,7 @@
         VehicleGroupsService.save(this.vehicleGroup).then((response) => {
           const vehicleGroup = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Grupo de veículos criado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -32,6 +34,8 @@
           this.$router.go({ name: 'vehicleGroupShow', params: { id: vehicleGroup.id } });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import VehicleForm from '../components/form';
 
   import VehiclesService from '../service';
@@ -23,7 +25,7 @@
         VehiclesService.save(this.vehicle).then((response) => {
           const vehicle = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Veículo criado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -32,6 +34,8 @@
           this.$router.go({ name: 'vehicleShow', params: { id: vehicle.id } });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

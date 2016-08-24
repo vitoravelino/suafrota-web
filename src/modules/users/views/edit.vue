@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import UserForm from '../components/form';
 
   import UsersService from '../service';
@@ -39,7 +41,7 @@
         UsersService.update(this.user).then((response) => {
           const user = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Usuário atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -50,7 +52,7 @@
 
       onRemove() {
         UsersService.remove(this.user.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Usuário removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -59,6 +61,8 @@
           this.$router.go({ path: '/users' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

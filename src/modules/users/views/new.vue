@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import UserForm from '../components/form';
 
   import UsersService from '../service';
@@ -25,7 +27,7 @@
         UsersService.save(this.user).then((response) => {
           const user = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Usuário criado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -34,6 +36,8 @@
           this.$router.go({ name: 'userShow', params: { id: user.id } });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

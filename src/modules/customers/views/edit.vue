@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import CustomerForm from '../components/form';
 
   import CustomersService from '../service';
@@ -32,7 +34,7 @@
         CustomersService.update(this.customer).then((response) => {
           const customer = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Cliente atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -43,7 +45,7 @@
 
       onRemove() {
         CustomersService.remove(this.customer.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Cliente removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -52,6 +54,8 @@
           this.$router.go({ path: '/customers' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

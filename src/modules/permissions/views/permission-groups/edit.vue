@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import PermissionGroupForm from '../../components/permission-groups/form';
 
   import PermissionGroupsService from '../../services/permission-groups';
@@ -32,7 +34,7 @@
         PermissionGroupsService.update(this.permissionGroup).then((response) => {
           const permissionGroup = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Grupo de permissão atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -43,7 +45,7 @@
 
       onRemove() {
         PermissionGroupsService.remove(this.permissionGroup.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Grupo de permissão removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -52,6 +54,8 @@
           this.$router.go({ path: '/permission_groups' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

@@ -45,7 +45,7 @@
 
       onRemove(permission) {
         this.removePermission(permission).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Permissão removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -53,7 +53,7 @@
         });
       },
 
-      ...mapActions(['removePermission']),
+      ...mapActions(['setAlert', 'removePermission']),
     },
 
     components: {

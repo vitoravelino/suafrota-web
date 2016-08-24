@@ -37,7 +37,7 @@
         const permissionGroupId = this.permission.permission_group_id;
 
         this.updatePermission(this.permission).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Permissão atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -51,7 +51,7 @@
         const permissionGroupId = this.permission.permission_group_id;
 
         this.removePermission(this.permission).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Permissão removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -61,7 +61,7 @@
         });
       },
 
-      ...mapActions(['updatePermission', 'removePermission']),
+      ...mapActions(['setAlert', 'updatePermission', 'removePermission']),
     },
 
     components: {

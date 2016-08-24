@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import UserDetails from '../components/details';
 
   import UsersService from '../service';
@@ -30,7 +32,7 @@
     methods: {
       onRemove() {
         UsersService.remove(this.user.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Usuário removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -39,6 +41,8 @@
           this.$router.go({ path: '/users' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

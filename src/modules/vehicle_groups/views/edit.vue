@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import VehicleGroupForm from '../components/form';
 
   import VehicleGroupsService from '../service';
@@ -32,7 +34,7 @@
         VehicleGroupsService.update(this.vehicleGroup).then((response) => {
           const vehicleGroup = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Gruop de veículos atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -43,7 +45,7 @@
 
       onRemove() {
         VehicleGroupsService.remove(this.vehicleGroup.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Grupo de veículos removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -52,6 +54,8 @@
           this.$router.go({ path: '/vehicle_groups' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

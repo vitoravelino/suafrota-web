@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import EquipmentForm from '../components/form';
 
   import EquipmentsService from '../service';
@@ -32,7 +34,7 @@
         EquipmentsService.update(this.equipment).then((response) => {
           const equipment = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Equipamento atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -43,7 +45,7 @@
 
       onRemove() {
         EquipmentsService.remove(this.equipment.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Equipamento removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -52,6 +54,8 @@
           this.$router.go({ path: '/equipments' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

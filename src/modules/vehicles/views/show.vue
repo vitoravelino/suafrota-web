@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import VehicleDetails from '../components/details';
 
   import VehiclesService from '../service';
@@ -32,7 +34,7 @@
     methods: {
       onRemove() {
         VehiclesService.delete(this.vehicle.id).then(() => {
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Veículo removido com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -41,6 +43,8 @@
           this.$router.go({ path: '/vehicles' });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import CustomerForm from '../components/form';
 
   import CustomersService from '../service';
@@ -23,7 +25,7 @@
         CustomersService.save(this.customer).then((response) => {
           const customer = response.json().data;
 
-          this.$store.dispatch('setAlert', {
+          this.setAlert({
             message: 'Cliente criado com sucesso!',
             type: 'success',
             from: this.$route.path,
@@ -32,6 +34,8 @@
           this.$router.go({ name: 'customerShow', params: { id: customer.id } });
         });
       },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {
