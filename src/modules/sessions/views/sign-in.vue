@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>Admin</b>LTE</a>
+      <a href="../../index2.html">Sua<strong>FROTA</strong></a>
     </div>
     <!-- /.login-logo -->
 

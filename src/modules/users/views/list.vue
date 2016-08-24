@@ -49,12 +49,12 @@
     },
 
     methods: {
-      onShow(id) {
-        this.$router.go({ name: 'userShow', params: { id } });
+      onShow(user) {
+        this.$router.go({ name: 'userShow', params: { id: user.id } });
       },
 
-      onEdit(id) {
-        this.$router.go({ name: 'userEdit', params: { id } });
+      onEdit(user) {
+        this.$router.go({ name: 'userEdit', params: { id: user.id } });
       },
     },
 

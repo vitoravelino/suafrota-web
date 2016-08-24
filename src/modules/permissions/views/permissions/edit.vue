@@ -6,21 +6,17 @@
     </h4>
   </content-inner-header>
 
-  <permission-form :permission="permission" edit="true" @submit="onSubmit" @back="onBack" @remove="onRemove"></permission-form>
+  <permission-form :permission="permission" edit="true" @submit="onSubmit" @remove="onRemove"></permission-form>
 </template>
 
 <script>
   import { mapActions } from 'vuex';
-
-  import HistoryMixin from 'mixins/history';
 
   import PermissionForm from '../../components/permissions/form';
 
   import PermissionsService from '../../services/permissions';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         permission: {},

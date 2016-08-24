@@ -2,20 +2,16 @@
   <content-header title="Grupo de veículos" subtitle="Criar novo"></content-header>
 
   <content-main>
-    <vehicle-group-form :vehicle-group="vehicleGroup" @submit="onSubmit" @back="onBack"></vehicle-group-form>
+    <vehicle-group-form :vehicle-group="vehicleGroup" @submit="onSubmit"></vehicle-group-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import VehicleGroupForm from '../components/form';
 
   import VehicleGroupsService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         vehicleGroup: {},

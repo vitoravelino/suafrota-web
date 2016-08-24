@@ -2,20 +2,16 @@
   <content-header title="Cliente" subtitle="Criar novo"></content-header>
 
   <content-main>
-    <customer-form :customer="customer" @submit="onSubmit" @back="onBack"></customer-form>
+    <customer-form :customer="customer" @submit="onSubmit"></customer-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import CustomerForm from '../components/form';
 
   import CustomersService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         customer: {},

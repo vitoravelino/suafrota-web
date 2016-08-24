@@ -2,20 +2,16 @@
   <content-header title="Veículo" subtitle="Criar novo"></content-header>
 
   <content-main>
-    <vehicle-form :vehicle="vehicle" @submit="onSubmit" @back="onBack"></vehicle-form>
+    <vehicle-form :vehicle="vehicle" @submit="onSubmit"></vehicle-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import VehicleForm from '../components/form';
 
   import VehiclesService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         vehicle: {},

@@ -1,5 +1,5 @@
 export default {
-  sidebarCollapse: (state) => state.sidebar.collapse,
+  sidebarCollapse: ({ sidebar }) => sidebar.collapse,
 
-  mainAlert: (state) => state.alert,
+  mainAlert: ({ alert }) => alert,
 };

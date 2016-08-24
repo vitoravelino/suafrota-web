@@ -2,20 +2,16 @@
   <content-header title="Usuário" subtitle="Criar novo"></content-header>
 
   <content-main>
-    <user-form :user="user" @submit="onSubmit" @back="onBack"></user-form>
+    <user-form :user="user" @submit="onSubmit"></user-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import UserForm from '../components/form';
 
   import UsersService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         user: {

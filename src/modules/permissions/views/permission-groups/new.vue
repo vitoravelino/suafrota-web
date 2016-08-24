@@ -2,20 +2,16 @@
   <content-header title="Grupo de permissões" subtitle="Criar novo"></content-header>
 
   <content-main>
-    <permission-group-form :permission-group="permissionGroup" @submit="onSubmit" @back="onBack"></permission-group-form>
+    <permission-group-form :permission-group="permissionGroup" @submit="onSubmit"></permission-group-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import PermissionGroupForm from '../../components/permission-groups/form';
 
   import PermissionGroupsService from '../../services/permission-groups';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         permissionGroup: {},

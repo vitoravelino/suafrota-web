@@ -9,7 +9,15 @@
   </content-header>
 
   <content-main>
-    <data-table :collection="customers" :fields="fields" :can-edit="true" @show="onShow" @edit="onEdit"></data-table>
+    <data-table
+      :collection="customers"
+      :fields="fields"
+      :can-edit="$auth.is('admin')"
+      :can-show="$auth.is('admin')"
+      :can-destroy="$auth.is('admin')"
+      @show="onShow"
+      @edit="onEdit">
+    </data-table>
   </content-main>
 </template>
 
@@ -39,12 +47,12 @@
     },
 
     methods: {
-      onShow(id) {
-        this.$router.go({ name: 'customerShow', params: { id } });
+      onShow(customer) {
+        this.$router.go({ name: 'customerShow', params: { id: customer.id } });
       },
 
-      onEdit(id) {
-        this.$router.go({ name: 'customerEdit', params: { id } });
+      onEdit(customer) {
+        this.$router.go({ name: 'customerEdit', params: { id: customer.id } });
       },
     },
 

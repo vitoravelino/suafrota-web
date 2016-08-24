@@ -9,7 +9,15 @@
   </content-header>
 
   <content-main>
-    <data-table :collection="permissionGroups" :fields="fields" :can-edit="true" @show="onShow" @edit="onEdit"></data-table>
+    <data-table
+      :collection="permissionGroups"
+      :fields="fields"
+      :can-edit="$auth.is('admin')"
+      :can-show="$auth.is('admin')"
+      :can-destroy="$auth.is('admin')"
+      @show="onShow"
+      @edit="onEdit">
+    </data-table>
   </content-main>
 </template>
 
@@ -40,12 +48,12 @@
     },
 
     methods: {
-      onShow(id) {
-        this.$router.go({ name: 'permissionGroupShow', params: { id } });
+      onShow(permissionGroup) {
+        this.$router.go({ name: 'permissionGroupShow', params: { id: permissionGroup.id } });
       },
 
-      onEdit(id) {
-        this.$router.go({ name: 'permissionGroupEdit', params: { id } });
+      onEdit(permissionGroup) {
+        this.$router.go({ name: 'permissionGroupEdit', params: { id: permissionGroup.id } });
       },
     },
 

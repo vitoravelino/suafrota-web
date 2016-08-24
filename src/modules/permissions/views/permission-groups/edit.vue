@@ -2,20 +2,16 @@
   <content-header title="Grupo de permissões" subtitle="Editar"></content-header>
 
   <content-main>
-    <permission-group-form :permission-group="permissionGroup" edit="true" @submit="onSubmit" @back="onBack" @remove="onRemove"></permission-group-form>
+    <permission-group-form :permission-group="permissionGroup" edit="true" @submit="onSubmit" @remove="onRemove"></permission-group-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import PermissionGroupForm from '../../components/permission-groups/form';
 
   import PermissionGroupsService from '../../services/permission-groups';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         permissionGroup: {},

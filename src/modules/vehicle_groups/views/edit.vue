@@ -2,20 +2,16 @@
   <content-header title="Grupo de veículo" subtitle="Editar"></content-header>
 
   <content-main>
-    <vehicle-group-form :vehicle-group="vehicleGroup" edit="true" @submit="onSubmit" @back="onBack" @remove="onRemove"></vehicle-group-form>
+    <vehicle-group-form :vehicle-group="vehicleGroup" edit="true" @submit="onSubmit" @remove="onRemove"></vehicle-group-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import VehicleGroupForm from '../components/form';
 
   import VehicleGroupsService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         vehicleGroup: {},

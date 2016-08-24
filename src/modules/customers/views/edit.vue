@@ -2,20 +2,16 @@
   <content-header title="Cliente" subtitle="Editar"></content-header>
 
   <content-main>
-    <customer-form :customer="customer" edit="true" @submit="onSubmit" @back="onBack" @remove="onRemove"></customer-form>
+    <customer-form :customer="customer" edit="true" @submit="onSubmit" @remove="onRemove"></customer-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import CustomerForm from '../components/form';
 
   import CustomersService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         customer: {},

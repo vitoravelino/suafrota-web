@@ -2,20 +2,16 @@
   <content-header title="Equipamento" subtitle="Editar"></content-header>
 
   <content-main>
-    <equipment-form :equipment="equipment" edit="true" @submit="onSubmit" @back="onBack" @remove="onRemove"></equipment-form>
+    <equipment-form :equipment="equipment" edit="true" @submit="onSubmit" @remove="onRemove"></equipment-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import EquipmentForm from '../components/form';
 
   import EquipmentsService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         equipment: {},

@@ -3,18 +3,18 @@
     <validator name="validation">
       <form role="form" novalidate @submit.prevent="onSubmit">
         <box-header class="with-border">
-          <button type="button" class="btn btn-default" @click.prevent="emitBack">
+          <button type="button" class="btn btn-default" v-sf-back>
             <i class="fa fa-arrow-left"></i>
           </button>
           <button type="submit" class="btn btn-primary">
             <i class="fa fa-save"></i>
             &nbsp; Salvar
           </button>
-          <button type="button" class="btn btn-default" @click.prevent="emitBack" v-if="edit">
+          <button type="button" class="btn btn-default" v-if="edit" v-sf-back>
             <i class="fa fa-times"></i>
             &nbsp; Descartar mudanças
           </button>
-          <button type="button" class="btn btn-default" @click.prevent="emitBack" v-if="!edit">
+          <button type="button" class="btn btn-default" v-if="!edit" v-sf-back>
             <i class="fa fa-times"></i>
             &nbsp; Descartar
           </button>
@@ -120,10 +120,6 @@
 
       vehicleLabel(vehicle) {
         return `${vehicle.license_plate} (${vehicle.model})`;
-      },
-
-      emitBack() {
-        this.$emit('back');
       },
 
       emitRemove() {

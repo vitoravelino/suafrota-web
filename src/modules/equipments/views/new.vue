@@ -2,20 +2,16 @@
   <content-header title="Equipamento" subtitle="Criar novo"></content-header>
 
   <content-main>
-    <equipment-form :equipment="equipment" @submit="onSubmit" @back="onBack"></equipment-form>
+    <equipment-form :equipment="equipment" @submit="onSubmit"></equipment-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import EquipmentForm from '../components/form';
 
   import EquipmentsService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         equipment: {},

@@ -1,5 +1,5 @@
 export default {
-  currentPermissionGroup: (state) => state.currentPermissionGroup,
+  currentPermissionGroup: ({ currentPermissionGroup }) => currentPermissionGroup,
 
-  currentPermissions: (state) => state.currentPermissions,
+  currentPermissions: ({ currentPermissions }) => currentPermissions,
 };

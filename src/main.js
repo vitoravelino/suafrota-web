@@ -13,6 +13,8 @@ import Authorization from './plugins/authorization';
 import App from './modules/app';
 import store from './vuex/store';
 
+import './directives';
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VueValidator);

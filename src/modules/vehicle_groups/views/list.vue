@@ -49,12 +49,12 @@
     },
 
     methods: {
-      onShow(id) {
-        this.$router.go({ name: 'vehicleGroupShow', params: { id } });
+      onShow(vehicleGroup) {
+        this.$router.go({ name: 'vehicleGroupShow', params: { id: vehicleGroup.id } });
       },
 
-      onEdit(id) {
-        this.$router.go({ name: 'vehicleGroupEdit', params: { id } });
+      onEdit(vehicleGroup) {
+        this.$router.go({ name: 'vehicleGroupEdit', params: { id: vehicleGroup.id } });
       },
     },
 

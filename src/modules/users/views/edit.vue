@@ -8,22 +8,17 @@
       :can-edit="$auth.can('users.update')"
       :can-destroy="$auth.can('users.destroy')"
       @submit="onSubmit"
-      @back="onBack"
       @remove="onRemove">
     </user-form>
   </content-main>
 </template>
 
 <script>
-  import HistoryMixin from 'mixins/history';
-
   import UserForm from '../components/form';
 
   import UsersService from '../service';
 
   export default {
-    mixins: [HistoryMixin],
-
     data() {
       return {
         user: {},
