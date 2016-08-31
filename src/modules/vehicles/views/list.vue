@@ -16,11 +16,15 @@
       :can-show="$auth.can('vehicles.show')"
       :can-remove="$auth.can('vehicles.destroy')"
       @show="onShow"
-      @edit="onEdit"></data-table>
+      @edit="onEdit"
+      @remove="onRemove">
+    </data-table>
   </content-main>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import DataTable from 'modules/dashboard/components/data-table';
 
   import VehiclesService from '../service';
@@ -56,6 +60,20 @@
       onEdit(vehicle) {
         this.$router.go({ name: 'vehicleEdit', params: { id: vehicle.id } });
       },
+
+      onRemove(vehicle) {
+        VehiclesService.confirmRemoval(vehicle).then(() => {
+          VehiclesService.remove(vehicle.id).then(() => {
+            this.setAlert({
+              message: 'Veículo removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
+          });
+        });
+      },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

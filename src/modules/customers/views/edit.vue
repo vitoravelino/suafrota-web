@@ -44,14 +44,16 @@
       },
 
       onRemove() {
-        CustomersService.remove(this.customer.id).then(() => {
-          this.setAlert({
-            message: 'Cliente removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
+        CustomersService.confirmRemoval(this.customer).then(() => {
+          CustomersService.remove(this.customer.id).then(() => {
+            this.setAlert({
+              message: 'Cliente removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
 
-          this.$router.go({ path: '/customers' });
+            this.$router.go({ path: '/customers' });
+          });
         });
       },
 

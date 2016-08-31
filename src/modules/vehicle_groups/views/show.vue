@@ -31,14 +31,16 @@
 
     methods: {
       onRemove() {
-        VehicleGroupsService.delete(this.vehicleGroup.id).then(() => {
-          this.setAlert({
-            message: 'Grupo de veículos removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
+        VehicleGroupsService.confirmRemoval(this.vehicleGroup).then(() => {
+          VehicleGroupsService.delete(this.vehicleGroup.id).then(() => {
+            this.setAlert({
+              message: 'Grupo de veículos removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
 
-          this.$router.go({ path: '/vehicle_groups' });
+            this.$router.go({ path: '/vehicle_groups' });
+          });
         });
       },
 

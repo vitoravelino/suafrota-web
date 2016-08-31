@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import swal from 'sweetalert2';
 
 Vue.use(VueResource);
 
@@ -53,10 +54,28 @@ function all(params = {}) {
   return resource.get({}, params);
 }
 
+/**
+ * [confirmRemoval description]
+ * @param  {[type]} equipment [description]
+ * @return {[type]}           [description]
+ */
+function confirmRemoval(equipment) {
+  return swal({
+    title: 'Você tem certeza?',
+    text: `Equipamento <b>${equipment.serial}</b> será removido.
+           Você não poderá desfazer essa ação.`,
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, remova-o',
+    cancelButtonText: 'Cancelar',
+  });
+}
+
 export default {
   get,
   save,
   all,
   update,
   remove,
+  confirmRemoval,
 };

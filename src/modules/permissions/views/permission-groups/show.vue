@@ -30,14 +30,16 @@
 
     methods: {
       onRemove() {
-        PermissionGroupsService.remove(this.permissionGroup.id).then(() => {
-          this.setAlert({
-            message: 'Grupo de permissões removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
+        PermissionGroupsService.confirmRemoval(this.permissionGroup).then(() => {
+          PermissionGroupsService.remove(this.permissionGroup.id).then(() => {
+            this.setAlert({
+              message: 'Grupo de permissões removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
 
-          this.$router.go({ path: '/permission_groups' });
+            this.$router.go({ path: '/permission_groups' });
+          });
         });
       },
 

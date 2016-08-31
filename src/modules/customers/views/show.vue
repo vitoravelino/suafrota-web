@@ -31,14 +31,16 @@
 
     methods: {
       onRemove() {
-        CustomersService.delete(this.customer.id).then(() => {
-          this.setAlert({
-            message: 'Equipamento removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
+        CustomersService.confirmRemoval(this.customer).then(() => {
+          CustomersService.delete(this.customer.id).then(() => {
+            this.setAlert({
+              message: 'Equipamento removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
 
-          this.$router.go({ path: '/equipments' });
+            this.$router.go({ path: '/equipments' });
+          });
         });
       },
 

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import swal from 'sweetalert2';
 
 Vue.use(VueResource);
 
@@ -75,6 +76,22 @@ function all(params = {}) {
   return resource.get({}, params);
 }
 
+/**
+ * [confirmRemoval description]
+ * @param  {[type]} user [description]
+ * @return {[type]}      [description]
+ */
+function confirmRemoval(user) {
+  return swal({
+    title: 'Você tem certeza?',
+    text: `Usuário <b>${user.name}</b> será removido. Você não poderá desfazer essa ação.`,
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, remova-o',
+    cancelButtonText: 'Cancelar',
+  });
+}
+
 export default {
   getProfile,
   get,
@@ -83,4 +100,5 @@ export default {
   update,
   remove,
   search,
+  confirmRemoval,
 };

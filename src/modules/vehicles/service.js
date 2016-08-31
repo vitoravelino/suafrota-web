@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import swal from 'sweetalert2';
 
 Vue.use(VueResource);
 
@@ -66,6 +67,23 @@ function all(params = {}) {
   return resource.get({}, params);
 }
 
+/**
+ * [confirmRemoval description]
+ * @param  {[type]} vehicle [description]
+ * @return {[type]}         [description]
+ */
+function confirmRemoval(vehicle) {
+  return swal({
+    title: 'Você tem certeza?',
+    text: `Veículo <b>${vehicle.license_plate} ${vehicle.model}</b> será removido.
+           Você não poderá desfazer essa ação.`,
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, remova-o',
+    cancelButtonText: 'Cancelar',
+  });
+}
+
 export default {
   get,
   save,
@@ -73,4 +91,5 @@ export default {
   update,
   remove,
   search,
+  confirmRemoval,
 };

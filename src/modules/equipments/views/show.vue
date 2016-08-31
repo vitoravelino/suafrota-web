@@ -33,14 +33,16 @@
 
     methods: {
       onRemove() {
-        EquipmentsService.delete(this.equipment.id).then(() => {
-          this.setAlert({
-            message: 'Equipamento removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
+        EquipmentsService.confirmRemoval(this.equipment).then(() => {
+          EquipmentsService.delete(this.equipment.id).then(() => {
+            this.setAlert({
+              message: 'Equipamento removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
 
-          this.$router.go({ path: '/equipments' });
+            this.$router.go({ path: '/equipments' });
+          });
         });
       },
 

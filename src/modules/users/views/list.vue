@@ -16,15 +16,20 @@
       :can-edit="$auth.can('users.update')"
       :can-remove="$auth.can('users.destroy')"
       @show="onShow"
-      @edit="onEdit">
+      @edit="onEdit"
+      @remove="onRemove">
     </data-table>
   </content-main>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import DataTable from 'modules/dashboard/components/data-table';
 
   import UsersService from '../service';
+
+  import { findIndex } from 'utils/array';
 
   export default {
     data() {
@@ -56,6 +61,27 @@
       onEdit(user) {
         this.$router.go({ name: 'userEdit', params: { id: user.id } });
       },
+
+      onRemove(user) {
+        UsersService.confirmRemoval(user).then(() => {
+          UsersService.remove(user.id).then(() => {
+            const index = findIndex(this.users, (u) => u.id === user.id);
+            const users = [
+              ...this.users.slice(0, index),
+              ...this.users.slice(index + 1),
+            ];
+
+            this.$set('users', users);
+            this.setAlert({
+              message: 'Usuário removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
+          });
+        });
+      },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

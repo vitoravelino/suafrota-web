@@ -54,17 +54,21 @@ export default {
   removePermission({ commit, state }, permission) {
     const permisisonGroupId = permission.permission_group_id;
 
-    const promise = PermissionsService.remove(permisisonGroupId, permission.id);
+    const promise = new Promise((resolve, reject) => {
+      PermissionsService.confirmRemoval(permission).then(() => {
+        PermissionsService.remove(permisisonGroupId, permission.id).then(() => {
+          const index = findIndex(state.currentPermissions, (p) => p.id === permission.id);
 
-    promise.then(() => {
-      const index = findIndex(state.currentPermissions, (p) => p.id === permission.id);
+          const permissions = [
+            ...state.currentPermissions.slice(0, index),
+            ...state.currentPermissions.slice(index + 1),
+          ];
 
-      const permissions = [
-        ...state.currentPermissions.slice(0, index),
-        ...state.currentPermissions.slice(index + 1),
-      ];
+          commit('SET_CURRENT_PERMISSIONS', permissions);
 
-      commit('SET_CURRENT_PERMISSIONS', permissions);
+          resolve();
+        }).catch(reject);
+      });
     });
 
     return promise;

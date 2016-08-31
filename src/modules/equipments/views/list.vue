@@ -16,12 +16,15 @@
       :can-show="$auth.is('admin')"
       :can-remove="$auth.is('admin')"
       @show="onShow"
-      @edit="onEdit">
+      @edit="onEdit"
+      @remove="onRemove">
     </data-table>
   </content-main>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   import DataTable from 'modules/dashboard/components/data-table';
 
   import EquipmentsService from '../service';
@@ -57,6 +60,20 @@
       onEdit(equipment) {
         this.$router.go({ name: 'equipmentEdit', params: { id: equipment.id } });
       },
+
+      onRemove(equipment) {
+        EquipmentsService.confirmRemoval(equipment).then(() => {
+          EquipmentsService.remove(equipment.id).then(() => {
+            this.setAlert({
+              message: 'Equipamento removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
+          });
+        });
+      },
+
+      ...mapActions(['setAlert']),
     },
 
     components: {

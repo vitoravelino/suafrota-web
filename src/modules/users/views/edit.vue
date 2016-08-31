@@ -51,14 +51,16 @@
       },
 
       onRemove() {
-        UsersService.remove(this.user.id).then(() => {
-          this.setAlert({
-            message: 'Usuário removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
+        UsersService.confirmRemoval(this.user).then(() => {
+          UsersService.remove(this.user.id).then(() => {
+            this.setAlert({
+              message: 'Usuário removido com sucesso!',
+              type: 'success',
+              from: this.$route.path,
+            });
 
-          this.$router.go({ path: '/users' });
+            this.$router.go({ path: '/users' });
+          });
         });
       },
 
