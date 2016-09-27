@@ -1,12 +1,17 @@
+<style lang="sass" scoped>
+  .forgot-password
+    line-height: 34px
+</style>
+
 <template>
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html">Sua<strong>FROTA</strong></a>
+      <a href="#">Sua<strong>FROTA</strong></a>
     </div>
     <!-- /.login-logo -->
 
     <div class="login-box-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Faça login para começar a sua sessão</p>
 
       <validator name="validation">
         <form novalidate @submit.prevent="onSubmit">
@@ -16,29 +21,20 @@
             <span class="help-block" v-show="isEmailInvalid">Endereço de email inválido</span>
           </div>
           <div class="form-group has-feedback" :class="{'has-error': isPasswordInvalid}">
-            <input type="password" name="password" id="password" class="form-control" placeholder="Password" v-model="credentials.password" v-validate:password="[ 'required' ]">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Senha" v-model="credentials.password" v-validate:password="[ 'required' ]">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             <span class="help-block" v-show="isPasswordInvalid">Campo obrigatório</span>
           </div>
           <div class="row">
             <div class="col-xs-8">
-              <icheck :checked.sync="remember"></icheck>
+              <a href="#" class="forgot-password">Esqueci minha senha</a>
             </div> <!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
             </div> <!-- /.col -->
           </div>
         </form>
       </validator>
-
-      <div class="social-auth-links text-center">
-        <p>- OR -</p>
-      </div>
-      <!-- /.social-auth-links -->
-
-      <a href="#">I forgot my password</a><br>
-      <a href="register.html" class="text-center">Register a new membership</a>
-
     </div>
     <!-- /.login-box-body -->
   </div>

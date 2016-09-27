@@ -42,7 +42,8 @@
 <template>
   <div class="row form-inline">
     <div class="col-sm-6 showing">
-        Mostrando {{ start }} a {{ end }} de {{ total }} registros
+        <span v-if="total > 0">Mostrando {{ start }} a {{ end }} de {{ total }} registros</span>
+        <span v-else>Nenhum registro</span>
     </div>
     <div class="col-sm-6 text-right">
       <div class="btn-group btn-group" role="group">

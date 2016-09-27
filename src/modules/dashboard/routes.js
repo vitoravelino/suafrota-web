@@ -6,6 +6,7 @@ import EquipmentsRoutes from 'modules/equipments/router/routes';
 import CustomersRoutes from 'modules/customers/router/routes';
 import PermissionsRoutes from 'modules/permissions/router/routes';
 import VehicleGroupsRoutes from 'modules/vehicle_groups/router/routes';
+import TrackingRoutes from 'modules/tracking/router/routes';
 
 const routes = {
   component: Layout,
@@ -20,6 +21,7 @@ const subRoutes = [
   CustomersRoutes,
   PermissionsRoutes,
   VehicleGroupsRoutes,
+  TrackingRoutes,
 ];
 
 Object.assign(routes.subRoutes, ...subRoutes);

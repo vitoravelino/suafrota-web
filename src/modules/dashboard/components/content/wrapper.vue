@@ -29,5 +29,9 @@
 
       this.handleResize();
     },
+
+    destroyed() {
+      window.removeEventListener('resize', this.handleResize);
+    },
   };
 </script>

@@ -6,21 +6,91 @@
 
 <template>
   <ul class="sidebar-menu">
-    <li :class="{'active': $route.path == '/'}">
-      <a v-link="{path: '/'}">
-        <i class="fa fa-link"></i> <span>Principal</span>
+    <li class="header">Principal</li>
+    <li :class="{'active': $route.path == '/tracking'}">
+      <a v-link="{path: '/tracking'}">
+        <i class="fa fa-map"></i> <span>Rastreamento</span>
       </a>
     </li>
-    <li class="header">Relatórios</li>
-    <!-- Optionally, you can add icons to the links -->
-    <li :class="{'active': $route.path == '/'}" v-if="canShowRelatorio">
-      <a v-link="{path: '/'}">
-        <i class="fa fa-link"></i> <span>Relatório 1</span>
-      </a>
-    </li>
+    <multilevel name="Relatórios" icon="fa-file-text" v-if="$auth.canAny('reports')">
+      <li :class="{'active': $route.path == '/reports'}" v-if="$auth.can('reports.coordinates')">
+        <a v-link="{path: '/reports/coordinates'}">
+          <i class="fa fa-circle-o"></i>
+          Coordenadas
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/speed'}" v-if="$auth.can('reports.speed')">
+        <a v-link="{path: '/reports/speed'}">
+          <i class="fa fa-circle-o"></i>
+          Excesso de velocidade
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/analytical'}" v-if="$auth.can('reports.analytical')">
+        <a v-link="{path: '/reports/analytical'}">
+          <i class="fa fa-circle-o"></i>
+          Analítico
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/state'}" v-if="$auth.can('reports.state')">
+        <a v-link="{path: '/reports/state'}">
+          <i class="fa fa-circle-o"></i>
+          Tempos (parado/ligado)
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/performance'}" v-if="$auth.can('reports.performance')">
+        <a v-link="{path: '/reports/performance'}">
+          <i class="fa fa-circle-o"></i>
+          Desempenho operacional
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/hours'}" v-if="$auth.can('reports.hours')">
+        <a v-link="{path: '/reports/hours'}">
+          <i class="fa fa-circle-o"></i>
+          Expediente
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/odometer'}" v-if="$auth.can('reports.odometer')">
+        <a v-link="{path: '/reports/odometer'}">
+          <i class="fa fa-circle-o"></i>
+          Odômetro
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/panic'}" v-if="$auth.can('reports.panic')">
+        <a v-link="{path: '/reports/panic'}">
+          <i class="fa fa-circle-o"></i>
+          Pânico
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/reports/status'}" v-if="$auth.can('reports.status')">
+        <a v-link="{path: '/reports/status'}">
+          <i class="fa fa-circle-o"></i>
+          Veículos atualiz./desat.
+        </a>
+      </li>
+    </multilevel>
+    <multilevel name="Alertas" icon="fa-bell" v-if="$auth.canAny('alerts')">
+      <li :class="{'active': $route.path == '/alerts/panic'}" v-if="$auth.can('alerts.panic')">
+        <a v-link="{path: '/alerts'}">
+          <i class="fa fa-circle-o"></i>
+          Pânico
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/alerts/equipment'}" v-if="$auth.can('alerts.equipment')">
+        <a v-link="{path: '/alerts/equipment'}">
+          <i class="fa fa-circle-o"></i>
+          Equipamento violado
+        </a>
+      </li>
+      <li :class="{'active': $route.path == '/alerts/speed'}" v-if="$auth.can('alerts.speed')">
+        <a v-link="{path: '/alerts/speed'}">
+          <i class="fa fa-circle-o"></i>
+          Excesso de velocidade
+        </a>
+      </li>
+    </multilevel>
+
     <li class="header">Administração</li>
-    <!-- Optionally, you can add icons to the links -->
-    <multilevel name="Usuários" icon="fa-user"  v-if="$auth.canAny('users')">
+    <multilevel name="Usuários" icon="fa-user" v-if="$auth.canAny('users')">
       <li :class="{'active': $route.path == '/users'}" v-if="$auth.can('users.list')">
         <a v-link="{path: '/users'}">
           <i class="fa fa-circle-o"></i>

@@ -9,14 +9,14 @@
   <div class="row form-inline">
     <div class="col-sm-6 filters">
       <label>
-        Show
+        Mostrar
         <select class="form-control" v-model="limit">
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
-        entries
+        registros
       </label>
     </div>
     <div class="col-sm-6 filters text-right">
