@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
-import swal from 'sweetalert2';
+
+import swal from 'utils/swal';
 
 Vue.use(VueResource);
 
@@ -66,14 +67,9 @@ function all(params = {}) {
  */
 function confirmRemoval(permission) {
   /* eslint max-len: "off" */
-  return swal({
-    title: 'Você tem certeza?',
+  return swal.remove({
     text: `Permissão <b>${permission.name}</b> será removido. Todos os usuários que a possuem perderão tal.
            Você não poderá desfazer essa ação.`,
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Sim, remova-o',
-    cancelButtonText: 'Cancelar',
   });
 }
 

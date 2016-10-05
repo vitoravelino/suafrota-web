@@ -9,6 +9,8 @@ import ContentHeader from './components/content/header';
 import ContentMain from './components/content/main';
 import ContentInnerHeader from './components/content/inner-header';
 
+import FormHeader from './components/form/form-header';
+
 export function registerGlobalComponents() {
   Vue.component('box', Box);
   Vue.component('box-header', BoxHeader);
@@ -18,4 +20,6 @@ export function registerGlobalComponents() {
   Vue.component('content-header', ContentHeader);
   Vue.component('content-main', ContentMain);
   Vue.component('content-inner-header', ContentInnerHeader);
+
+  Vue.component('form-header', FormHeader);
 }

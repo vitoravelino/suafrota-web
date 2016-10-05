@@ -42,7 +42,7 @@
 
       <strong>Perfil</strong>
       <p class="text-muted">
-        {{* role }}
+        {{ role }}
       </p>
 
       <hr />

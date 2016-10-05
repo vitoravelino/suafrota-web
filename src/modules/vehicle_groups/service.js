@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
-import swal from 'sweetalert2';
+
+import swal from 'utils/swal';
 
 Vue.use(VueResource);
 
@@ -60,14 +61,9 @@ function all(params = {}) {
  * @return {[type]}              [description]
  */
 function confirmRemoval(vehicleGroup) {
-  return swal({
-    title: 'Você tem certeza?',
+  return swal.remove({
     text: `Grupo de veículos <b>${vehicleGroup.name}</b> será removido.
            Você não poderá desfazer essa ação.`,
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Sim, remova-o',
-    cancelButtonText: 'Cancelar',
   });
 }
 

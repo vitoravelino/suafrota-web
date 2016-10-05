@@ -17,19 +17,23 @@
       :can-remove="$auth.is('admin')"
       @show="onShow"
       @edit="onEdit"
-      @remove="onRemove">
+      @remove="remove">
     </data-table>
   </content-main>
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { findIndex } from 'utils/array';
 
   import DataTable from 'modules/dashboard/components/data-table';
 
   import PermissionGroupsService from '../../services/permission-groups';
 
+  import { removeMixin as PermissionGroupRemoveMixin } from '../../mixins';
+
   export default {
+    mixins: [PermissionGroupRemoveMixin],
+
     data() {
       return {
         permissionGroups: [],
@@ -59,19 +63,17 @@
         this.$router.go({ name: 'permissionGroupEdit', params: { id: permissionGroup.id } });
       },
 
-      onRemove(permissionGroup) {
-        PermissionGroupsService.confirmRemoval(permissionGroup).then(() => {
-          PermissionGroupsService.remove(permissionGroup.id).then(() => {
-            this.setAlert({
-              message: 'Grupo de permissões removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-          });
+      remove(permissionGroup) {
+        this.onRemove(permissionGroup).then(() => {
+          const index = findIndex(this.permissionGroups, (p) => p.id === permissionGroup.id);
+          const permissionGroups = [
+            ...this.permissionGroups.slice(0, index),
+            ...this.permissionGroups.slice(index + 1),
+          ];
+
+          this.$set('permissionGroups', permissionGroups);
         });
       },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

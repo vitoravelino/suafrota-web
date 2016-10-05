@@ -7,10 +7,15 @@ import UsersService from 'modules/users/service';
 import SessionsService from 'modules/sessions/service';
 
 import { SIGN_IN_URL } from 'modules/sessions/router/paths';
+import { TRACKING_URL } from 'modules/tracking/router/paths';
 import { ROOT_URL } from './paths';
 
 export function configRoutes(router) {
   router.map(routes);
+
+  router.redirect({
+    [ROOT_URL]: TRACKING_URL,
+  });
 
   router.beforeEach(({ from, to, redirect, next }) => {
     const mainAlert = store.getters.mainAlert;

@@ -47,7 +47,6 @@ function setPreviousURL(path) {
   }
 }
 
-
 /**
  * [isLogged description]
  * @return {Boolean} [description]

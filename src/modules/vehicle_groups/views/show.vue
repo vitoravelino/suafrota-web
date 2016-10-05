@@ -7,13 +7,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-
   import VehicleGroupDetails from '../components/details';
-
   import VehicleGroupsService from '../service';
 
+  import { removeMixin as VehicleGroupRemoveMixin } from '../mixins';
+
   export default {
+    mixins: [VehicleGroupRemoveMixin],
+
     data() {
       return {
         vehicleGroup: {},
@@ -27,24 +28,6 @@
           next();
         });
       },
-    },
-
-    methods: {
-      onRemove() {
-        VehicleGroupsService.confirmRemoval(this.vehicleGroup).then(() => {
-          VehicleGroupsService.delete(this.vehicleGroup.id).then(() => {
-            this.setAlert({
-              message: 'Grupo de veículos removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-
-            this.$router.go({ path: '/vehicle_groups' });
-          });
-        });
-      },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

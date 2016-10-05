@@ -7,13 +7,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-
   import VehicleDetails from '../components/details';
-
   import VehiclesService from '../service';
 
+  import { removeMixin as VehicleRemoveMixin } from '../mixins';
+
   export default {
+    mixins: [VehicleRemoveMixin],
+
     data() {
       return {
         vehicle: {
@@ -29,24 +30,6 @@
           next();
         });
       },
-    },
-
-    methods: {
-      onRemove() {
-        VehiclesService.confirmRemoval(this.vehicle).then(() => {
-          VehiclesService.remove(this.vehicle.id).then(() => {
-            this.setAlert({
-              message: 'Veículo removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-
-            this.$router.go({ path: '/vehicles' });
-          });
-        });
-      },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

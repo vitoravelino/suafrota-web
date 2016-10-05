@@ -7,13 +7,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-
   import UserDetails from '../components/details';
-
   import UsersService from '../service';
 
+  import { removeMixin as UserRemoveMixin } from '../mixins';
+
   export default {
+    mixins: [UserRemoveMixin],
+
     data() {
       return {
         user: {},
@@ -27,22 +28,6 @@
           next();
         });
       },
-    },
-
-    methods: {
-      onRemove() {
-        UsersService.remove(this.user.id).then(() => {
-          this.setAlert({
-            message: 'Usuário removido com sucesso!',
-            type: 'success',
-            from: this.$route.path,
-          });
-
-          this.$router.go({ path: '/users' });
-        });
-      },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

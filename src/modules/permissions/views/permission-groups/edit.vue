@@ -7,13 +7,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-
   import PermissionGroupForm from '../../components/permission-groups/form';
-
   import PermissionGroupsService from '../../services/permission-groups';
 
+  import { removeMixin as PermissionGroupRemoveMixin } from '../../mixins';
+
   export default {
+    mixins: [PermissionGroupRemoveMixin],
+
     data() {
       return {
         permissionGroup: {},
@@ -35,29 +36,14 @@
           const permissionGroup = response.json().data;
 
           this.setAlert({
-            message: 'Grupo de permissão atualizado com sucesso!',
+            message: 'Grupo de permissões atualizado com sucesso!',
             type: 'success',
             from: this.$route.path,
           });
+
           this.$router.go({ name: 'userShow', params: { id: permissionGroup.id } });
         });
       },
-
-      onRemove() {
-        PermissionGroupsService.confirmRemoval(this.permissionGroup).then(() => {
-          PermissionGroupsService.remove(this.permissionGroup.id).then(() => {
-            this.setAlert({
-              message: 'Grupo de permissão removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-
-            this.$router.go({ path: '/permission_groups' });
-          });
-        });
-      },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

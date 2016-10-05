@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
-import swal from 'sweetalert2';
+
+import swal from 'utils/swal';
 
 Vue.use(VueResource);
 
@@ -61,14 +62,9 @@ function all(params = {}) {
  */
 function confirmRemoval(permissionGroup) {
   /* eslint max-len: "off" */
-  return swal({
-    title: 'Você tem certeza?',
+  return swal.remove({
     text: `Grupo de permissões <b>${permissionGroup.name}</b> será removido. Isso removerá todas as permissões dos usuários que possuem alguma permissão desse grupo.
            Você não poderá desfazer essa ação.`,
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Sim, remova-o',
-    cancelButtonText: 'Cancelar',
   });
 }
 

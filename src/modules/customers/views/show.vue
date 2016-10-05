@@ -7,13 +7,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-
   import CustomerDetails from '../components/details';
-
   import CustomersService from '../service';
 
+  import { removeMixin as CustomerRemoveMixin } from '../mixins';
+
   export default {
+    mixins: [CustomerRemoveMixin],
+
     data() {
       return {
         customer: {},
@@ -27,24 +28,6 @@
           next();
         });
       },
-    },
-
-    methods: {
-      onRemove() {
-        CustomersService.confirmRemoval(this.customer).then(() => {
-          CustomersService.delete(this.customer.id).then(() => {
-            this.setAlert({
-              message: 'Equipamento removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-
-            this.$router.go({ path: '/equipments' });
-          });
-        });
-      },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

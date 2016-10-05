@@ -3,7 +3,7 @@
     <div slot="button-bar">
       <a class="btn btn-primary" v-link="{path: '/customers/new'}">
         <span class="fa fa-plus"></span>
-        &nbsp; Criar equipamento
+        &nbsp; Criar cliente
       </a>
     </div>
   </content-header>
@@ -17,21 +17,23 @@
       :can-remove="$auth.is('admin')"
       @show="onShow"
       @edit="onEdit"
-      @remove="onRemove">
+      @remove="remove">
     </data-table>
   </content-main>
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { findIndex } from 'utils/array';
 
   import DataTable from 'modules/dashboard/components/data-table';
 
   import CustomersService from '../service';
 
-  import { findIndex } from 'utils/array';
+  import { removeMixin as CustomerRemoveMixin } from '../mixins';
 
   export default {
+    mixins: [CustomerRemoveMixin],
+
     data() {
       return {
         customers: [],
@@ -60,26 +62,17 @@
         this.$router.go({ name: 'customerEdit', params: { id: customer.id } });
       },
 
-      onRemove(customer) {
-        CustomersService.confirmRemoval(customer).then(() => {
-          CustomersService.remove(customer.id).then(() => {
-            const index = findIndex(this.customers, (c) => c.id === customer.id);
-            const customers = [
-              ...this.customers.slice(0, index),
-              ...this.customers.slice(index + 1),
-            ];
+      remove(customer) {
+        this.onRemove(customer).then(() => {
+          const index = findIndex(this.customers, (c) => c.id === customer.id);
+          const customers = [
+            ...this.customers.slice(0, index),
+            ...this.customers.slice(index + 1),
+          ];
 
-            this.$set('customers', customers);
-            this.setAlert({
-              message: 'Cliente removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-          });
+          this.$set('customers', customers);
         });
       },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

@@ -2,27 +2,7 @@
   <box class="box-primary">
     <validator name="validation">
       <form role="form" novalidate @submit.prevent="onSubmit">
-        <box-header class="with-border">
-          <button type="button" class="btn btn-default" v-sf-back>
-            <i class="fa fa-arrow-left"></i>
-          </button>
-          <button type="submit" class="btn btn-primary">
-            <i class="fa fa-save"></i>
-            &nbsp; Salvar
-          </button>
-          <button type="button" class="btn btn-default" v-if="edit" v-sf-back>
-            <i class="fa fa-times"></i>
-            &nbsp; Descartar mudanças
-          </button>
-          <button type="button" class="btn btn-default" v-if="!edit" v-sf-back>
-            <i class="fa fa-times"></i>
-            &nbsp; Descartar
-          </button>
-          <button type="button "class="btn btn-danger pull-right" @click.prevent="emitRemove" v-if="edit">
-            <i class="fa fa-trash"></i>
-            &nbsp; Remover equipamento
-          </button>
-        </box-header>
+        <form-header entity="equipamento" :edit="edit" @remove="$emit('remove')"></form-header>
 
         <box-body>
           <div class="form-group" :class="{'has-error': isModelInvalid}">
@@ -120,11 +100,6 @@
 
       vehicleLabel(vehicle) {
         return `${vehicle.license_plate} (${vehicle.model})`;
-      },
-
-      emitRemove() {
-        // confirm()
-        this.$emit('back');
       },
     },
 

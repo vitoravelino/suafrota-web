@@ -23,13 +23,17 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { findIndex } from 'utils/array';
 
   import DataTable from 'modules/dashboard/components/data-table';
 
   import VehiclesService from '../service';
 
+  import { removeMixin as VehicleRemoveMixin } from '../mixins';
+
   export default {
+    mixins: [VehicleRemoveMixin],
+
     data() {
       return {
         vehicles: [],
@@ -61,19 +65,17 @@
         this.$router.go({ name: 'vehicleEdit', params: { id: vehicle.id } });
       },
 
-      onRemove(vehicle) {
-        VehiclesService.confirmRemoval(vehicle).then(() => {
-          VehiclesService.remove(vehicle.id).then(() => {
-            this.setAlert({
-              message: 'Veículo removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-          });
+      remove(vehicle) {
+        this.onRemove(vehicle).then(() => {
+          const index = findIndex(this.vehicles, (v) => v.id === vehicle.id);
+          const vehicles = [
+            ...this.vehicles.slice(0, index),
+            ...this.vehicles.slice(index + 1),
+          ];
+
+          this.$set('vehicles', vehicles);
         });
       },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {

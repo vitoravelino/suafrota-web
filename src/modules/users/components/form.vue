@@ -10,27 +10,7 @@
       <box class="box-primary">
         <validator name="validation">
           <form role="form" novalidate @submit.prevent="onSubmit">
-            <box-header class="with-border">
-              <button type="button" class="btn btn-default" v-sf-back>
-                <i class="fa fa-arrow-left"></i>
-              </button>
-              <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save"></i>
-                &nbsp; Salvar
-              </button>
-              <button type="button" class="btn btn-default" v-if="isEdit" v-sf-back>
-                <i class="fa fa-times"></i>
-                &nbsp; Descartar mudanças
-              </button>
-              <button type="button" class="btn btn-default" v-if="!isEdit" v-sf-back>
-                <i class="fa fa-times"></i>
-                &nbsp; Descartar
-              </button>
-              <button type="button "class="btn btn-danger pull-right" @click.prevent="emitRemove" v-if="edit">
-                <i class="fa fa-trash"></i>
-                &nbsp; Remover usuário
-              </button>
-            </box-header>
+            <form-header entity="usuário" :edit="edit" @remove="$emit('remove')"></form-header>
 
             <box-body>
               <div class="form-group" :class="{'has-error': isNameInvalid}">
@@ -61,30 +41,12 @@
       </box> <!-- .box -->
     </div> <!-- .col-md-7 -->
 
-    <div class="col-md-5" v-if="$auth.can('users.assignPermissions')">
-      <box>
-        <box-header class="with-border">
-          <h4 class="box-title">Permissões do usuário</h4>
-        </box-header>
-        <box-body>
-          <ul class="list-unstyled">
-            <li v-for="permissionGroup in permissionGroups">
-              <strong v-if="permissionGroup.permissions.count">{{ permissionGroup.name }}</strong>
-              <ul class="list-unstyled" v-if="permissionGroup.permissions.count">
-                <li v-for="permission in permissionGroup.permissions.data">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" v-model="user.permissions_ids" :value="permission.id" />
-                      {{ permission.description }}
-                    </label>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </box-body>
-      </box>
-    </div>
+    <permissions-form
+      class="col-md-5"
+      :user="user"
+      :permission-groups="permissionGroups"
+      v-if="$auth.can('users.assignPermissions')">
+    </permissions-form>
   </div>
 </template>
 
@@ -92,6 +54,8 @@
   import { mapGetters } from 'vuex';
 
   import PermissionGroupsService from 'modules/permissions/services/permission-groups';
+  import PermissionsForm from './permissions-form';
+
   import Roles from '../../users/roles';
 
   export default {
@@ -164,11 +128,6 @@
           this.$emit('submit');
         }
       },
-
-      emitRemove() {
-        // confirm()
-        this.$emit('back');
-      },
     },
 
     created() {
@@ -181,6 +140,10 @@
           console.log('What to do?', response);
         });
       }
+    },
+
+    components: {
+      PermissionsForm,
     },
   };
 </script>

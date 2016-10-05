@@ -13,9 +13,11 @@
 
   import PermissionGroupDetails from '../../components/permission-groups/details';
 
-  import PermissionGroupsService from '../../services/permission-groups';
+  import { removeMixin as PermissionGroupRemoveMixin } from '../../mixins';
 
   export default {
+    mixins: [PermissionGroupRemoveMixin],
+
     route: {
       activate({ to, next }) {
         this.fetchPermissionGroup(to.params.id).then(() => {
@@ -29,21 +31,7 @@
     }),
 
     methods: {
-      onRemove() {
-        PermissionGroupsService.confirmRemoval(this.permissionGroup).then(() => {
-          PermissionGroupsService.remove(this.permissionGroup.id).then(() => {
-            this.setAlert({
-              message: 'Grupo de permissões removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-
-            this.$router.go({ path: '/permission_groups' });
-          });
-        });
-      },
-
-      ...mapActions(['setAlert', 'fetchPermissionGroup']),
+      ...mapActions(['fetchPermissionGroup']),
     },
 
     components: {

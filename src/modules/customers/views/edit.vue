@@ -7,13 +7,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-
   import CustomerForm from '../components/form';
-
   import CustomersService from '../service';
 
+  import { removeMixin as CustomerRemoveMixin } from '../mixins';
+
   export default {
+    mixins: [CustomerRemoveMixin],
+
     data() {
       return {
         customer: {},
@@ -42,22 +43,6 @@
           this.$router.go({ name: 'customerShow', params: { id: customer.id } });
         });
       },
-
-      onRemove() {
-        CustomersService.confirmRemoval(this.customer).then(() => {
-          CustomersService.remove(this.customer.id).then(() => {
-            this.setAlert({
-              message: 'Cliente removido com sucesso!',
-              type: 'success',
-              from: this.$route.path,
-            });
-
-            this.$router.go({ path: '/customers' });
-          });
-        });
-      },
-
-      ...mapActions(['setAlert']),
     },
 
     components: {
